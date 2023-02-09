@@ -1,15 +1,14 @@
 import React from 'react'
 import { Button } from 'semantic-ui-react'
-import { ClientLayout } from './layouts' 
+import { Navigation } from './routes/Navigation'
 
 export const App = () => {
   return (
-    <ClientLayout>
-      <div>
-        <h1>The pepe correctly</h1>
-        <Button primary> Holaaa </Button>
-      </div>
-    </ClientLayout>
+    <div>
+      <Navigation />
+      <h1>The pepe correctly</h1>
+      <Button primary> Holaaa </Button>
+    </div>
   )
 }
 

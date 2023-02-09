@@ -3,8 +3,6 @@ import './ClientLayout.scss'
 
 export const ClientLayout = ({ children }) => {
 
-
-
   return (
 
     <div>
