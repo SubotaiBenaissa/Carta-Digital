@@ -1,4 +1,5 @@
 import React from 'react'
+import { LoginForm } from '../../../components/admin' 
 import './LoginAdmin.scss'
 
 export const LoginAdmin = () => {
@@ -7,7 +8,7 @@ export const LoginAdmin = () => {
         <div className='login-admin'>
             <div className='login-admin__content'>
                 <h1>Entrar al panel</h1>
-                <p>Acá irá el formulario xd</p>
+                <LoginForm />
             </div>
         </div>
     )
