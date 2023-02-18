@@ -4,7 +4,7 @@ export async function loginApi(formData) {
 
     try {
         
-        const url = `${BASE_PATH}/auth/login/`
+        const url = `${BASE_PATH}/api/auth/login/`
         const params = {
             method: "POST",
             headers: {
@@ -19,7 +19,9 @@ export async function loginApi(formData) {
             throw new Error("Usuario o contraseña incorrectos")
         }
 
-        return result = await response.json();
+        const result = await response.json();
+
+        return result
 
     } catch (error) {
         
