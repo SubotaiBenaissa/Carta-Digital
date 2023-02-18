@@ -32,7 +32,8 @@ export const LoginForm = () => {
         onSubmit: async(formValue) => {
             try {
                 const response = await loginApi(formValue)
-                console.log(response)
+                const { access } = response;
+                console.log(access)
             } catch(error) {
                 console.log('error')
                 console.log(error)
