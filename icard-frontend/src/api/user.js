@@ -4,7 +4,7 @@ export async function loginApi(formData) {
 
     try {
         
-        const url = `${BASE_PATH}/auth/login`
+        const url = `${BASE_PATH}/auth/login/`
         const params = {
             method: "POST",
             headers: {
