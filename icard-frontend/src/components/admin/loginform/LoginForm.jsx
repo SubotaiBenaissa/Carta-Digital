@@ -27,7 +27,7 @@ export const LoginForm = () => {
     const formik = useFormik({
 
         initialValues: initialValuesForm(),
-        validationSchema: Yup.object(validationSchema),
+        validationSchema: Yup.object(validationSchema()),
         onSubmit: (formValue) => {
             console.log("email enviado")
             console.log(formValue)
@@ -37,8 +37,8 @@ export const LoginForm = () => {
 
     return (
         <Form className="login-form-admin" onSubmit={formik.handleSubmit}>
-            <Form.Input name="email" placeholder="Correo" value={formik.values.email} onChange={formik.handleChange}/>
-            <Form.Input name="password" type="password" placeholder="Contraseña" value={formik.values.password} onChange={formik.handleChange}/>
+            <Form.Input name="email" placeholder="Correo" value={formik.values.email} onChange={formik.handleChange} error={formik.errors.email}/>
+            <Form.Input name="password" type="password" placeholder="Contraseña" value={formik.values.password} onChange={formik.handleChange} error={formik.errors.password}/>
             <Button type="submit" content="Iniciar sesión" primary fluid/> 
         </Form>
     )
