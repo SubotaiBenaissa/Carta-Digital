@@ -1,10 +1,11 @@
 import React from 'react'
 import { ToastContainer } from 'react-toastify'
 import { Navigation } from './routes/Navigation'
+import { AuthProvider } from "./context"
 
 export const App = () => {
   return (
-    <div>
+    <AuthProvider>
       <Navigation />
       <ToastContainer 
         position="bottom-center"
@@ -16,7 +17,7 @@ export const App = () => {
         draggable
         pauseOnHover={false}
       />  
-    </div>
+    </AuthProvider>
   )
 }
 

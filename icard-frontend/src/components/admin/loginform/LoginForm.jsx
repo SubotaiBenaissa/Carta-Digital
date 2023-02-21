@@ -4,6 +4,7 @@ import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { toast } from 'react-toastify'
 import { loginApi } from '../../../api/user'
+import { useAuth } from '../../../hooks'
 import "./LoginForm.scss"
 
 function initialValuesForm(){ 
@@ -25,6 +26,8 @@ function validationSchema() {
 }
 
 export const LoginForm = () => {
+
+    console.log(useAuth())
 
     const formik = useFormik({
 
