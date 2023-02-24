@@ -35,9 +35,9 @@ export async function getMeApi( token ) {
 
     try {
 
-        const url = `${BASE_API}/api/auth/me`;
+        const url = `${BASE_PATH}/api/auth/me`;
         const params = {
-            headres: {
+            headers: {
                 Authorization: `Bearer ${token}`
             }
         }

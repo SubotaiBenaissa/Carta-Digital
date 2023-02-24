@@ -10,6 +10,7 @@ export const AuthContext = createContext({
 
 export const AuthProvider = ({ children }) => {
 
+    const [auth, setAuth] = useState(undefined)
     const { getMe } = useUser();
 
     const login = async ( token ) => {
@@ -20,7 +21,7 @@ export const AuthProvider = ({ children }) => {
     }
 
     const valueContext = {
-        auth: null,
+        auth,
         login,
         logout: () => console.log("Cerrando sesión")
     }
