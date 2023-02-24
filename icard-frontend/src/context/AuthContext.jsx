@@ -16,6 +16,7 @@ export const AuthProvider = ({ children }) => {
     const login = async ( token ) => {
         setToken(token)
         const Me = await getMe(token); 
+        setAuth({ token, Me });
         console.log(Me)
         // console.log('Context login', token);
     }
