@@ -27,7 +27,7 @@ function validationSchema() {
 
 export const LoginForm = () => {
 
-    console.log(useAuth())
+    const { login } = useAuth();
 
     const formik = useFormik({
 
@@ -37,6 +37,7 @@ export const LoginForm = () => {
             try {
                 const response = await loginApi(formValue)
                 const { access } = response;
+                login(access)
                 console.log(access)
             } catch(error) {
                 console.log('error')
