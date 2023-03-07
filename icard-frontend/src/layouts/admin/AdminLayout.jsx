@@ -1,7 +1,7 @@
 import React from 'react'
 import { LoginAdmin } from "../../pages"
 import { useAuth } from "../../hooks"
-import { TopMenu } from "../../components/admin"
+import { TopMenu, SideMenu } from "../../components/admin"
 import './AdminLayout.scss'
 
 export const AdminLayout = ({ children }) => {
@@ -17,7 +17,9 @@ export const AdminLayout = ({ children }) => {
                 <TopMenu />
             </div>
             <div className="admin-layout__main-content">
-                { children }
+                <SideMenu>
+                    { children }
+                </SideMenu>
             </div>      
         </div>
     )
