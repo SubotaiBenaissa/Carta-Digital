@@ -10,14 +10,9 @@ export const AuthContext = createContext({
 
 export const AuthProvider = ({ children }) => {
 
-    const [auth, setAuth] = useState(undefined)
-    const { getMe } = useUser();
+    const authToken = async() => {
 
-    useEffect(() => {
-        
-        (async () => {
-
-            const token = getToken()
+        const token = getToken()
 
             if(token) {
                 const me = await getMe(token)
@@ -27,7 +22,14 @@ export const AuthProvider = ({ children }) => {
                 setAuth(null);
             }
 
-        })();
+    }
+
+    const [auth, setAuth] = useState(undefined)
+    const { getMe } = useUser();
+
+    useEffect(() => {
+        
+        authToken();
 
     }, [])
     

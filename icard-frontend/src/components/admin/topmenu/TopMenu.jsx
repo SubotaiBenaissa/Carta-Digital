@@ -1,8 +1,11 @@
 import React from 'react'
 import { Icon, Menu } from "semantic-ui-react"
+import { useAuth } from "../../../hooks"
 import './TopMenu.scss'
 
 export const TopMenu = () => {
+
+    const { auth, logout } = useAuth();
 
     return (
 
@@ -12,7 +15,7 @@ export const TopMenu = () => {
             </Menu.Item>
             <Menu.Menu position="right">
                 <Menu.Item>Hola, usuario xd</Menu.Item>
-                <Menu.Item>
+                <Menu.Item onClick={ logout }>
                     <Icon name="sign-out" />
                 </Menu.Item>
             </Menu.Menu>
