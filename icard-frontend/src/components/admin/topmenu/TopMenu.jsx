@@ -7,6 +7,18 @@ export const TopMenu = () => {
 
     const { auth, logout } = useAuth();
 
+    const renderName = () => {
+        
+        if(auth.me?.username) {
+
+            return `${auth.me.username}`;
+
+        }
+
+        return auth.me.email;
+
+    }
+
     return (
 
         <Menu fixed="top" className="top-menu-admin">
@@ -14,7 +26,7 @@ export const TopMenu = () => {
                 <p>iCard Admin</p>
             </Menu.Item>
             <Menu.Menu position="right">
-                <Menu.Item>Hola, usuario xd</Menu.Item>
+                <Menu.Item>Hola, { renderName() }</Menu.Item>
                 <Menu.Item onClick={ logout }>
                     <Icon name="sign-out" />
                 </Menu.Item>
