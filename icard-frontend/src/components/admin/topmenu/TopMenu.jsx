@@ -9,9 +9,9 @@ export const TopMenu = () => {
 
     const renderName = () => {
         
-        if(auth.me?.username) {
+        if(auth.Me?.username) {
 
-            return `${auth.me.username}`;
+            return `${auth.Me.username}`;
 
         }
 
