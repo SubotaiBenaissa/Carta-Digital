@@ -22,7 +22,7 @@ const MenuLeft = ({ pathname }) => {
             <Menu.Item as={ Link } to={ '/admin/products' }>
                 <Icon name="cart" /> Productos
             </Menu.Item>
-            <Menu.Item as={ Link } to={ '/admin/users' }>
+            <Menu.Item as={ Link } to={ '/admin/user' }>
                 <Icon name="users" /> Usuarios
             </Menu.Item>
         </Menu>
