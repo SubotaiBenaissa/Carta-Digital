@@ -1,9 +1,13 @@
 import React from 'react'
 import { Menu, Icon } from "semantic-ui-react"
 import { Link, useLocation } from 'react-router-dom'
+import { useAuth } from "../../../hooks"
 import "./SideMenu.scss"
 
 const MenuLeft = ({ pathname }) => {
+
+    const { auth } = useAuth();
+    console.log(auth)
 
     return (
         <Menu fixed="left" borderless className="side" vertical>
@@ -22,9 +26,13 @@ const MenuLeft = ({ pathname }) => {
             <Menu.Item as={ Link } to={ '/admin/products' }>
                 <Icon name="cart" /> Productos
             </Menu.Item>
+            
+            {auth.me?.is_staff && (
             <Menu.Item as={ Link } to={ '/admin/user' }>
                 <Icon name="users" /> Usuarios
             </Menu.Item>
+            )}
+            
         </Menu>
     )
 
