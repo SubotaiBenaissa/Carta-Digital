@@ -1,7 +1,15 @@
-import React from 'react'
-import {  } from "../../../hooks"
+import React, { useEffect } from 'react'
+import { useUser } from "../../../hooks"
 
 export const UserAdmin = () => {
+
+    const { loading, users, getUsers } = useUser();
+
+    console.log('users --->', users);
+
+    useEffect(() => {
+        getUsers();
+    }, []);
 
     return (
 

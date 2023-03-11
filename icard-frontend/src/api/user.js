@@ -58,11 +58,11 @@ export async function getUserApi( token ) {
     
     try {
         
-        const url = `${ BASE_PATH }/api/userUsuarios`
+        const url = `${BASE_PATH}/api/userUsuarios`
         const params = {
             headers: {
-                Authorization: `Bearer ${ token }`
-            }
+                authorization: `Bearer ${token}`,
+            },
         }
         const response = await fetch( url, params );
         const result = await response.json();
