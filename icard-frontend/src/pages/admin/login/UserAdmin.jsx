@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react'
 import { useUser } from "../../../hooks"
+import { HeaderPage } from "../../../components/admin";
+
 
 export const UserAdmin = () => {
 
@@ -13,9 +15,10 @@ export const UserAdmin = () => {
 
     return (
 
-        <div>
+        <>
+            <HeaderPage title="Usuarios" btnTitle="Nuevo usuario"/>
             <h1>User Admin Component</h1>
-        </div>
+        </>
         
     )
 
