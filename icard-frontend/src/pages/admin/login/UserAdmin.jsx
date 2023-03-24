@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
+import { Loader } from "semantic-ui-react"
 import { useUser } from "../../../hooks"
-import { HeaderPage } from "../../../components/admin";
+import { HeaderPage, TableUsers } from "../../../components/admin";
 
 
 export const UserAdmin = () => {
@@ -17,7 +18,13 @@ export const UserAdmin = () => {
 
         <>
             <HeaderPage title="Usuarios" btnTitle="Nuevo usuario"/>
-            <h1>User Admin Component</h1>
+            { loading ? (
+                <Loader active inline="centered">
+                    Cargando... 
+                </Loader>
+            ): (
+                <TableUsers users={ users }/>
+            )}
         </>
         
     )
