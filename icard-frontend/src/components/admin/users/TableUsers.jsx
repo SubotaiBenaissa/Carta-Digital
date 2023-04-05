@@ -31,7 +31,7 @@ export const TableUsers = ({ users }) => {
                             <Table.Cell className='status'>{ user.is_active ? <Icon name="check" /> : <Icon name="close"/> }</Table.Cell>
                             <Table.Cell className='status'>{ user.is_staff ? <Icon name="check"/> : <Icon name="close"/> }</Table.Cell>
                             <Table.Cell>
-                                <Button icon onClick={() => console.log("click 1")}>
+                                <Button icon onClick={() => console.log(`Editar usuario ${user.username}`)}>
                                     <Icon name="pencil"/>
                                 </Button>
                             </Table.Cell>
