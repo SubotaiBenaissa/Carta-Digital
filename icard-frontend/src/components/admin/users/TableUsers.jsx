@@ -1,6 +1,8 @@
 import React from 'react'
-import { Table, Button, Icon } from "semantic-ui-react"
+import { Table, Icon, Button } from "semantic-ui-react"
 import { map } from "lodash"
+import "./TableUsers.scss"
+
 
 export const TableUsers = ({ users }) => {
 
@@ -9,13 +11,13 @@ export const TableUsers = ({ users }) => {
         <Table className="table-users-admin">
             <Table.Header>
                 <Table.Row>
-                    <Table.HeaderCell>Username</Table.HeaderCell>
+                    <Table.HeaderCell>Usuario</Table.HeaderCell>
                     <Table.HeaderCell>Email</Table.HeaderCell>
                     <Table.HeaderCell>Nombre</Table.HeaderCell>
                     <Table.HeaderCell>Apellidos</Table.HeaderCell>
                     <Table.HeaderCell>Activo</Table.HeaderCell>
                     <Table.HeaderCell>Staff</Table.HeaderCell>
-                    <Table.HeaderCell></Table.HeaderCell>
+                    <Table.HeaderCell>Acciones</Table.HeaderCell>
                 </Table.Row>
             </Table.Header>
             <Table.Body>
@@ -26,6 +28,13 @@ export const TableUsers = ({ users }) => {
                             <Table.Cell>{ user.email }</Table.Cell>
                             <Table.Cell>{ user.first_name }</Table.Cell>
                             <Table.Cell>{ user.last_name }</Table.Cell>
+                            <Table.Cell className='status'>{ user.is_active ? <Icon name="check" /> : <Icon name="close"/> }</Table.Cell>
+                            <Table.Cell className='status'>{ user.is_staff ? <Icon name="check"/> : <Icon name="close"/> }</Table.Cell>
+                            <Table.Cell>
+                                <Button icon onClick={() => console.log("click 1")}>
+                                    <Icon name="pencil"/>
+                                </Button>
+                            </Table.Cell>
                         </Table.Row>
                     ))
                 }
