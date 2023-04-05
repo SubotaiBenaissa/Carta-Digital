@@ -34,6 +34,9 @@ export const TableUsers = ({ users }) => {
                                 <Button icon onClick={() => console.log(`Editar usuario ${user.username}`)}>
                                     <Icon name="pencil"/>
                                 </Button>
+                                <Button icon negative onClick={() => console.log(`Borrar usuario ${user.username}`)}>
+                                    <Icon name="close" />
+                                </Button>
                             </Table.Cell>
                         </Table.Row>
                     ))
