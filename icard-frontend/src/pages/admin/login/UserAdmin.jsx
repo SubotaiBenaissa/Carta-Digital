@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { Loader } from "semantic-ui-react"
 import { useUser } from "../../../hooks"
 import { HeaderPage, TableUsers } from "../../../components/admin";
-
+import { ModalBasic } from '../../../components/common';
 
 export const UserAdmin = () => {
 
@@ -25,6 +25,7 @@ export const UserAdmin = () => {
             ): (
                 <TableUsers users={ users }/>
             )}
+            <ModalBasic show={ true }/>
         </>
         
     )
