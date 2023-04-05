@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Loader } from "semantic-ui-react"
 import { useUser } from "../../../hooks"
 import { HeaderPage, TableUsers } from "../../../components/admin";
@@ -7,17 +7,22 @@ import { ModalBasic } from '../../../components/common';
 export const UserAdmin = () => {
 
     const { loading, users, getUsers } = useUser();
-
-    console.log('users --->', users);
+    const [ titleModal, setTitleModal ] = useState(null);
+    const [ showModal, setShowModal ] = useState(false);
+    const [ contentModal, setContentModal ] = useState({});
 
     useEffect(() => {
         getUsers();
     }, []);
 
+    const openCloseModal = () => {
+        setShowModal((prevState) => !prevState)
+    }
+
     return (
 
         <>
-            <HeaderPage title="Usuarios" btnTitle="Nuevo usuario"/>
+            <HeaderPage title="Usuarios" btnTitle="Nuevo usuario" btnClick={ openCloseModal }/>
             { loading ? (
                 <Loader active inline="centered">
                     Cargando... 
@@ -25,7 +30,7 @@ export const UserAdmin = () => {
             ): (
                 <TableUsers users={ users }/>
             )}
-            <ModalBasic show={ true } title="Crear usuario">
+            <ModalBasic show={ showModal } title="Crear usuario" onClose={ openCloseModal }>
                 <p>Holaa</p>
             </ModalBasic>
         </>

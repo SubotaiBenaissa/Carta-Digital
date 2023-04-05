@@ -9,7 +9,7 @@ export const ModalBasic = ({ show, size, title, children, onClose }) => {
         <Modal 
             className="modal-basic" 
             open={ show } 
-            onClose={() => alert("Cerrado modal")}
+            onClose={ onClose }
             size={ size }
         >
             <Modal.Header>{ title }</Modal.Header>
