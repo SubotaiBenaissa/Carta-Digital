@@ -25,7 +25,9 @@ export const UserAdmin = () => {
             ): (
                 <TableUsers users={ users }/>
             )}
-            <ModalBasic show={ true }/>
+            <ModalBasic show={ true } title="Crear usuario">
+                <p>Holaa</p>
+            </ModalBasic>
         </>
         
     )
