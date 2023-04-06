@@ -9,7 +9,7 @@ export const UserAdmin = () => {
     const { loading, users, getUsers } = useUser();
     const [ titleModal, setTitleModal ] = useState(null);
     const [ showModal, setShowModal ] = useState(false);
-    const [ contentModal, setContentModal ] = useState({});
+    const [ contentModal, setContentModal ] = useState(null);
 
     useEffect(() => {
         getUsers();
@@ -19,10 +19,16 @@ export const UserAdmin = () => {
         setShowModal((prevState) => !prevState)
     }
 
+    const addUser = () => {
+        setTitleModal("Nuevo Usuario")
+        setContentModal(<h2>Form para usuarios</h2>)
+        openCloseModal();
+    }
+
     return (
 
         <>
-            <HeaderPage title="Usuarios" btnTitle="Nuevo usuario" btnClick={ openCloseModal }/>
+            <HeaderPage title="Usuarios" btnTitle="Nuevo usuario" btnClick={ addUser }/>
             { loading ? (
                 <Loader active inline="centered">
                     Cargando... 
@@ -30,8 +36,8 @@ export const UserAdmin = () => {
             ): (
                 <TableUsers users={ users }/>
             )}
-            <ModalBasic show={ showModal } title="Crear usuario" onClose={ openCloseModal }>
-                <p>Holaa</p>
+            <ModalBasic show={ showModal } title={ titleModal } onClose={ openCloseModal }>
+                { contentModal }
             </ModalBasic>
         </>
         
