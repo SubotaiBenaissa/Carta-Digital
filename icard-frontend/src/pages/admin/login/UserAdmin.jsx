@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Loader } from "semantic-ui-react"
 import { useUser } from "../../../hooks"
-import { HeaderPage, TableUsers } from "../../../components/admin";
+import { HeaderPage, TableUsers, EditAddUser } from "../../../components/admin";
 import { ModalBasic } from '../../../components/common';
 
 export const UserAdmin = () => {
@@ -21,7 +21,7 @@ export const UserAdmin = () => {
 
     const addUser = () => {
         setTitleModal("Nuevo Usuario")
-        setContentModal(<h2>Form para usuarios</h2>)
+        setContentModal(<EditAddUser />)
         openCloseModal();
     }
 
