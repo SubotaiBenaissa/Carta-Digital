@@ -42,12 +42,30 @@ export const useUser = () => {
 
     }
 
+    const addUser = async( data ) => {
+
+        try {
+
+            setLoading(true);
+            await addUserAPI(data, auth.token)
+            setLoading(false)
+
+        } catch (error) {
+
+            setLoading(false)
+            setError(error)
+
+        }
+
+    }
+
     return {
         loading,
         error,
         users,
         getMe,
         getUsers,
+        addUser,
     }
 
 }

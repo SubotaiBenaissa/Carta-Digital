@@ -2,6 +2,7 @@ import React from 'react'
 import { Form, Button, Checkbox } from 'semantic-ui-react'
 import { useFormik } from 'formik'
 import * as Yup from "yup"
+import { useUser } from "../../../../hooks"
 import "./EditAddUser.scss"
 
 const initialValues = () => {
@@ -32,12 +33,23 @@ const newSchema = () => {
 
 export const EditAddUser = () => {
 
+    const { addUser } = useUser();
+
     const formik = useFormik({
         initialValues: initialValues(),
         validationSchema: Yup.object(newSchema()),
         validateOnChange: false,
-        onSubmit: (formValue) => {
-            console.log("Formulario enviado: ", formValue)
+        onSubmit: async(formValue) => {
+            try {
+                
+                await addUser(formValue)
+                console.log("Usuario creado exitosamente")
+
+            } catch (error) {
+
+                console.log(error)
+            
+            }
         }
     })
 
