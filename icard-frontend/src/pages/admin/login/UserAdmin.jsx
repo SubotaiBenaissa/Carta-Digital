@@ -9,19 +9,24 @@ export const UserAdmin = () => {
     const { loading, users, getUsers } = useUser();
     const [ titleModal, setTitleModal ] = useState(null);
     const [ showModal, setShowModal ] = useState(false);
+    const [refresh, setRefresh] = useState(false)
     const [ contentModal, setContentModal ] = useState(null);
 
     useEffect(() => {
         getUsers();
-    }, []);
+    }, [refresh]);
 
     const openCloseModal = () => {
         setShowModal((prevState) => !prevState)
     }
 
+    const onRefresh = () => {
+        setRefresh((prev) => !prev)
+    }
+
     const addUser = () => {
         setTitleModal("Nuevo Usuario")
-        setContentModal(<EditAddUser />)
+        setContentModal(<EditAddUser onClose={ openCloseModal } onRefresh={ onRefresh }/>)
         openCloseModal();
     }
 

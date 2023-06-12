@@ -80,7 +80,7 @@ export async function addUserAPI(data, token) {
 
     try {
 
-        const url = `${ BASE_PATH }/api/userUsuarios`;
+        const url = `${ BASE_PATH }/api/userUsuarios/`;
         const params = {
             method: 'POST',
             headers: {
@@ -96,7 +96,7 @@ export async function addUserAPI(data, token) {
     } catch (error) {
 
         throw error;
-        
+
     }
 
 }

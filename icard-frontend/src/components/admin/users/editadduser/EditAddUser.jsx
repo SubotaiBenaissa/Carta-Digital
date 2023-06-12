@@ -31,11 +31,12 @@ const newSchema = () => {
 
 }
 
-export const EditAddUser = () => {
+export const EditAddUser = ({ onClose, onRefresh }) => {
 
     const { addUser } = useUser();
 
     const formik = useFormik({
+
         initialValues: initialValues(),
         validationSchema: Yup.object(newSchema()),
         validateOnChange: false,
@@ -44,6 +45,8 @@ export const EditAddUser = () => {
                 
                 await addUser(formValue)
                 console.log("Usuario creado exitosamente")
+                onRefresh()
+                onClose()
 
             } catch (error) {
 
@@ -51,6 +54,7 @@ export const EditAddUser = () => {
             
             }
         }
+        
     })
 
     return (
