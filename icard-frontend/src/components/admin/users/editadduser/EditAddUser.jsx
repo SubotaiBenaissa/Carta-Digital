@@ -34,7 +34,7 @@ export const EditAddUser = () => {
 
     const formik = useFormik({
         initialValues: initialValues(),
-        validationSchema: Yup.object(newSchema),
+        validationSchema: Yup.object(newSchema()),
         validateOnChange: false,
         onSubmit: (formValue) => {
             console.log("Formulario enviado: ", formValue)
@@ -44,19 +44,19 @@ export const EditAddUser = () => {
     return (
 
         <Form className='add-edit-user-form' onSubmit={formik.handleSubmit}>
-            <Form.Input name="username" placeholder="Nombre de usuario" value={formik.values.username} onChange={formik.handleChange}/>
-            <Form.Input name="email" placeholder="Correo Electrónico" value={formik.values.email} onChange={formik.handleChange}/>
-            <Form.Input name="first_name" placeholder="Nombre" value={formik.values.first_name} onChange={formik.handleChange}/>
-            <Form.Input name="last_name" placeholder="Apellidos" value={formik.values.last_name} onChange={formik.handleChange}/>
-            <Form.Input name="password" type="password" placeholder="Contraseña" value={formik.values.password} onChange={formik.handleChange}/>
+            <Form.Input name="username" placeholder="Nombre de usuario" value={formik.values.username} onChange={formik.handleChange} error={formik.errors.username}/>
+            <Form.Input name="email" placeholder="Correo Electrónico" value={formik.values.email} onChange={formik.handleChange} error={formik.errors.email}/>
+            <Form.Input name="first_name" placeholder="Nombre" value={formik.values.first_name} onChange={formik.handleChange} error={formik.errors.first_name}/>
+            <Form.Input name="last_name" placeholder="Apellidos" value={formik.values.last_name} onChange={formik.handleChange} error={formik.errors.last_name}/>
+            <Form.Input name="password" type="password" placeholder="Contraseña" value={formik.values.password} onChange={formik.handleChange} error={formik.errors.password}/>
 
             <div className='add-edit-user-form__active'>
-                <Checkbox toggle />
+                <Checkbox toggle checked={formik.values.is_active} onChange={(_, data) => formik.setFieldValue('is_active', data.checked)}/>
                 Usuario activo
             </div>
 
             <div className='add-edit-user-form__staff'>
-                <Checkbox toggle />
+                <Checkbox toggle checked={formik.values.is_staff} onChange={(_, data) => formik.setFieldValue('is_staff', data.checked)}/>
                 Usuario administrador
             </div>
 
