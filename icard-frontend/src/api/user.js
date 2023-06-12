@@ -75,3 +75,28 @@ export async function getUserApi( token ) {
     }
 
 }
+
+export async function addUserAPI(data, token) {
+
+    try {
+
+        const url = `${ BASE_PATH }/api/userUsuarios`;
+        const params = {
+            method: 'POST',
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data),
+        };
+        const response = await fetch(url, params);
+        const result = await response.json()
+        return result
+
+    } catch (error) {
+
+        throw error;
+        
+    }
+
+}
