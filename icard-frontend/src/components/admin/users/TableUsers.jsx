@@ -3,8 +3,7 @@ import { Table, Icon, Button } from "semantic-ui-react"
 import { map } from "lodash"
 import "./TableUsers.scss"
 
-
-export const TableUsers = ({ users }) => {
+export const TableUsers = ({ users, updateUser }) => {
 
     return (
         
@@ -31,7 +30,7 @@ export const TableUsers = ({ users }) => {
                             <Table.Cell className='status'>{ user.is_active ? <Icon name="check" /> : <Icon name="close"/> }</Table.Cell>
                             <Table.Cell className='status'>{ user.is_staff ? <Icon name="check"/> : <Icon name="close"/> }</Table.Cell>
                             <Table.Cell>
-                                <Button icon onClick={() => console.log(`Editar usuario ${user.username}`)}>
+                                <Button icon onClick={() => updateUser(user)}>
                                     <Icon name="pencil"/>
                                 </Button>
                                 <Button icon negative onClick={() => console.log(`Borrar usuario ${user.username}`)}>

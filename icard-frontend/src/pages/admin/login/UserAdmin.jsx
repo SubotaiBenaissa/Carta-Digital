@@ -16,6 +16,12 @@ export const UserAdmin = () => {
         getUsers();
     }, [refresh]);
 
+    const updateUser = (data) => {
+        setTitleModal("Editar usuario")
+        setContentModal(<EditAddUser onClose={ openCloseModal } onRefresh={ onRefresh }/>)
+        openCloseModal();
+    }
+
     const openCloseModal = () => {
         setShowModal((prevState) => !prevState)
     }
@@ -39,7 +45,7 @@ export const UserAdmin = () => {
                     Cargando... 
                 </Loader>
             ): (
-                <TableUsers users={ users }/>
+                <TableUsers users={ users } updateUser={ updateUser }/>
             )}
             <ModalBasic show={ showModal } title={ titleModal } onClose={ openCloseModal }>
                 { contentModal }
