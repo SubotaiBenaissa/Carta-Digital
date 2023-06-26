@@ -5,14 +5,14 @@ import * as Yup from "yup"
 import { useUser } from "../../../../hooks"
 import "./EditAddUser.scss"
 
-const initialValues = () => {
-    return {
-        username: "",
-        email: "",
-        first_name: "",
-        last_name: "",
-        is_active: true,
-        is_staff: false,
+const initialValues = (data) => {
+        return {
+        username: data?.username || "",
+        email: data?.email || "",
+        first_name: data?.first_name || "",
+        last_name: data?.last_name || "",
+        is_active: data?.is_active ? true : false,
+        is_staff: data?.is_staff ? true : false,
         password: ""
     }
 }
@@ -31,20 +31,35 @@ const newSchema = () => {
 
 }
 
-export const EditAddUser = ({ onClose, onRefresh }) => {
+const updateSchema = () => {
+
+    return {
+        username: Yup.string().required(true),
+        email: Yup.string().email(true).required(true),
+        first_name: Yup.string(),
+        last_name: Yup.string(),
+        is_active: Yup.bool().required(true),
+        is_staff: Yup.bool().required(true),
+        password: Yup.string()
+    }
+
+}
+
+export const EditAddUser = ({ onClose, onRefresh, user }) => {
 
     const { addUser } = useUser();
 
     const formik = useFormik({
 
-        initialValues: initialValues(),
-        validationSchema: Yup.object(newSchema()),
+        initialValues: initialValues(user),
+        validationSchema: Yup.object(user ? updateSchema() : newSchema()),
         validateOnChange: false,
         onSubmit: async(formValue) => {
             try {
                 
-                await addUser(formValue)
-                console.log("Usuario creado exitosamente")
+                if (user) console.log("Editar Usuario")
+                else await addUser(formValue)
+                // console.log("Usuario creado exitosamente")
                 onRefresh()
                 onClose()
 
@@ -76,7 +91,7 @@ export const EditAddUser = ({ onClose, onRefresh }) => {
                 Usuario administrador
             </div>
 
-            <Button type='submit' content="Crear" primary fluid />
+            <Button type='submit' content={ user ? "Actualizar" : "Crear" } primary fluid />
         </Form>
 
     )

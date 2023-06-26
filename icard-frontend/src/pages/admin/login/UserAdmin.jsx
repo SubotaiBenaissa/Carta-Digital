@@ -18,7 +18,7 @@ export const UserAdmin = () => {
 
     const updateUser = (data) => {
         setTitleModal("Editar usuario")
-        setContentModal(<EditAddUser onClose={ openCloseModal } onRefresh={ onRefresh }/>)
+        setContentModal(<EditAddUser onClose={ openCloseModal } onRefresh={ onRefresh } user={ data }/>)
         openCloseModal();
     }
 
