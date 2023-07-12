@@ -105,7 +105,7 @@ export async function updateUserAPI( id, data, token ) {
 
     try {
 
-        const url = `${ BASE_PATH }/api/users/${ id }/`;
+        const url = `${ BASE_PATH }/api/userUsuarios/${ id }/`;
         const params = {
             method: "PATCH",
             headers: {
