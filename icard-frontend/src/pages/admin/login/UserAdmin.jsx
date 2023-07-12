@@ -6,7 +6,7 @@ import { ModalBasic } from '../../../components/common';
 
 export const UserAdmin = () => {
 
-    const { loading, users, getUsers } = useUser();
+    const { loading, users, getUsers, deleteUser } = useUser();
     const [ titleModal, setTitleModal ] = useState(null);
     const [ showModal, setShowModal ] = useState(false);
     const [refresh, setRefresh] = useState(false)
@@ -36,9 +36,16 @@ export const UserAdmin = () => {
         openCloseModal();
     }
 
-    const deleteUser = async( data ) => {
+    const onDeleteUser = async( data ) => {
         const result = confirm(`Desea eliminar al usuario ${data.username} ?`)
-        if(result) console.log("usuario eliminado")
+        if(result) {
+            try {
+                await deleteUser(data.id)
+                onRefresh()
+            } catch (error) {
+                console.error(error)
+            }
+        }
     }
 
     return (
@@ -50,7 +57,7 @@ export const UserAdmin = () => {
                     Cargando... 
                 </Loader>
             ): (
-                <TableUsers users={ users } updateUser={ updateUser } onDeleteUser={ deleteUser }/>
+                <TableUsers users={ users } updateUser={ updateUser } onDeleteUser={ onDeleteUser }/>
             )}
             <ModalBasic show={ showModal } title={ titleModal } onClose={ openCloseModal }>
                 { contentModal }
