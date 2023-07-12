@@ -6,6 +6,6 @@ from .models import Categoria
 # Create your views here.
 class CategoriaModelViewSet(ModelViewSet):
     
-    permission_classes = IsAuthenticatedOrReadOnly
+    permission_classes = [IsAuthenticatedOrReadOnly]
     serializer_class = CategoriaSerializer
     queryset = Categoria.objects.all()
