@@ -47,7 +47,7 @@ const updateSchema = () => {
 
 export const EditAddUser = ({ onClose, onRefresh, user }) => {
 
-    const { addUser } = useUser();
+    const { addUser, updateUser } = useUser();
 
     const formik = useFormik({
 
@@ -57,7 +57,7 @@ export const EditAddUser = ({ onClose, onRefresh, user }) => {
         onSubmit: async(formValue) => {
             try {
                 
-                if (user) console.log("Editar Usuario")
+                if (user) updateUser(user.id, formValue)
                 else await addUser(formValue)
                 // console.log("Usuario creado exitosamente")
                 onRefresh()
