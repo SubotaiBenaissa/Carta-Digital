@@ -1,10 +1,13 @@
 import React from 'react'
+import { HeaderPage } from "../../components/admin"
 
 export const CategoriesAdmin = () => {
 
     return (
         
-        <div>Hola Categorias</div>
+        <>
+            <HeaderPage title="Categorías" btnTitle="Nueva Categoría"/>
+        </>
 
     )
 
