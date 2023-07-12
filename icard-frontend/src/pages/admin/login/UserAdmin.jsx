@@ -36,6 +36,11 @@ export const UserAdmin = () => {
         openCloseModal();
     }
 
+    const deleteUser = async( data ) => {
+        const result = confirm(`Desea eliminar al usuario ${data.username} ?`)
+        if(result) console.log("usuario eliminado")
+    }
+
     return (
 
         <>
@@ -45,7 +50,7 @@ export const UserAdmin = () => {
                     Cargando... 
                 </Loader>
             ): (
-                <TableUsers users={ users } updateUser={ updateUser }/>
+                <TableUsers users={ users } updateUser={ updateUser } onDeleteUser={ deleteUser }/>
             )}
             <ModalBasic show={ showModal } title={ titleModal } onClose={ openCloseModal }>
                 { contentModal }
