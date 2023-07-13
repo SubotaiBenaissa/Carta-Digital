@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react'
 import { Loader } from "semantic-ui-react"
-import { HeaderPage } from "../../components/admin"
+import { HeaderPage, TableCategoryAdmin } from "../../components/admin"
 import { useCategory } from "../../hooks"
+
+TableCategoryAdmin
 
 export const CategoriesAdmin = () => {
 
@@ -22,7 +24,7 @@ export const CategoriesAdmin = () => {
                     Cargando...
                 </Loader>
             ) : (
-                <h2>Lista de categorías</h2>
+                <TableCategoryAdmin categories={ categories }/>
             ) }
         </>
 
