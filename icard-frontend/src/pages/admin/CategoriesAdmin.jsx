@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Loader } from "semantic-ui-react"
-import { HeaderPage, TableCategoryAdmin } from "../../components/admin"
+import { HeaderPage, TableCategoryAdmin, AddEditCategory } from "../../components/admin"
 import { useCategory } from "../../hooks"
 import { ModalBasic } from '../../components/common'
 
@@ -16,15 +16,19 @@ export const CategoriesAdmin = () => {
     }, [])
     
     const openCloseModal = () => {
-
         setShowModal(prev => !prev)
+    }
 
+    const addCategory = () => {
+        setTitleModal("Nueva categoría")
+        setContentModal(<AddEditCategory />)
+        openCloseModal()
     }
 
     return (
         
         <>
-            <HeaderPage title="Categorías" btnTitle="Nueva Categoría"/>
+            <HeaderPage title="Categorías" btnTitle="Nueva Categoría" btnClick={ addCategory }/>
             { loading ? (
                 <Loader active inline="centered">
                     Cargando...
