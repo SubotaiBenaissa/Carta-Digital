@@ -19,8 +19,9 @@ export const TableCategoryAdmin = ({ categories }) => {
                     map(categories, ( category, index ) => (
                         <Table.Row key={ index }>
                             <Table.Cell>
-                                <Image src={category.image} />
+                                <Image src={ category.image } />
                             </Table.Cell>
+                            <Table.Cell>{ category.title }</Table.Cell>
                         </Table.Row>
                     ))
                 }
