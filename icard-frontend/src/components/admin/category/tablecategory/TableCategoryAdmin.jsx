@@ -22,6 +22,14 @@ export const TableCategoryAdmin = ({ categories }) => {
                                 <Image src={ category.image } />
                             </Table.Cell>
                             <Table.Cell>{ category.title }</Table.Cell>
+                            <Table.Cell>
+                                <Button icon onClick={() => console.log("Actualizar Categoría")}>
+                                    <Icon name="pencil" />
+                                </Button>
+                                <Button icon onClick={() => console.log("Eliminar Categoría")}>
+                                    <Icon name="close" />
+                                </Button>
+                            </Table.Cell>
                         </Table.Row>
                     ))
                 }
