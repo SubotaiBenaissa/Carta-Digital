@@ -1,19 +1,25 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Loader } from "semantic-ui-react"
 import { HeaderPage, TableCategoryAdmin } from "../../components/admin"
 import { useCategory } from "../../hooks"
-
-TableCategoryAdmin
+import { ModalBasic } from '../../components/common'
 
 export const CategoriesAdmin = () => {
 
+    const [showModal, setShowModal] = useState(false)
+    const [titleModal, setTitleModal] = useState(null)
+    const [contentModal, setContentModal] = useState(null)
     const { loading, categories, getCategories } = useCategory()
 
     useEffect(() => {
         getCategories()
     }, [])
     
-    console.log(categories)
+    const openCloseModal = () => {
+
+        setShowModal(prev => !prev)
+
+    }
 
     return (
         
@@ -26,6 +32,7 @@ export const CategoriesAdmin = () => {
             ) : (
                 <TableCategoryAdmin categories={ categories }/>
             ) }
+            <ModalBasic show={ showModal } onClose={ openCloseModal } title={ titleModal } children={ contentModal }/>
         </>
 
     )
