@@ -12,6 +12,7 @@ export const TableCategoryAdmin = ({ categories }) => {
                 <Table.Row>
                     <Table.HeaderCell>Imagen</Table.HeaderCell>
                     <Table.HeaderCell>Nombre</Table.HeaderCell>
+                    <Table.HeaderCell textAlign="center">Acciones</Table.HeaderCell>
                 </Table.Row>
             </Table.Header>
             <Table.Body>
@@ -22,11 +23,11 @@ export const TableCategoryAdmin = ({ categories }) => {
                                 <Image src={ category.image } />
                             </Table.Cell>
                             <Table.Cell>{ category.title }</Table.Cell>
-                            <Table.Cell>
+                            <Table.Cell textAlign="right">
                                 <Button icon onClick={() => console.log("Actualizar Categoría")}>
                                     <Icon name="pencil" />
                                 </Button>
-                                <Button icon onClick={() => console.log("Eliminar Categoría")}>
+                                <Button icon negative onClick={() => console.log("Eliminar Categoría")}>
                                     <Icon name="close" />
                                 </Button>
                             </Table.Cell>
