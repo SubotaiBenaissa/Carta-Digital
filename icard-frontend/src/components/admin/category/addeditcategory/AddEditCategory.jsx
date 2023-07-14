@@ -1,5 +1,6 @@
 import React from 'react'
 import { Form, Image, Button } from "semantic-ui-react"
+import { useDropzone } from "react-dropzone"
 import "./AddEditCategory.scss"
 
 export const AddEditCategory = () => {
