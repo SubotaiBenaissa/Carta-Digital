@@ -25,7 +25,7 @@ export const AddEditCategory = () => {
             <Form.Input name="title" placeholder="Nombre de categoría" />
             <Button type="button" fluid { ...getRootProps() }>Subir imagen</Button>
             <input { ...getInputProps() } />
-            <Image src={ previewImage }/>
+            <Image fluid src={ previewImage }/>
             <Button type="submit" primary fluid>Crear</Button>
         </Form>
     
