@@ -9,6 +9,7 @@ export const AddEditCategory = () => {
 
     const onDrop = useCallback(( imageFile ) => {
         const file = imageFile[0]
+        setPreviewImage(URL.createObjectURL(file))
     }, [])
 
     const { getRootProps, getInputProps } = useDropzone({
@@ -24,6 +25,7 @@ export const AddEditCategory = () => {
             <Form.Input name="title" placeholder="Nombre de categoría" />
             <Button type="button" fluid { ...getRootProps() }>Subir imagen</Button>
             <input { ...getInputProps() } />
+            <Image src={ previewImage }/>
             <Button type="submit" primary fluid>Crear</Button>
         </Form>
     
