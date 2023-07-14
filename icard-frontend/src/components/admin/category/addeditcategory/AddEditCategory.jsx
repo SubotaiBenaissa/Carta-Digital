@@ -1,14 +1,44 @@
 import React, { useState, useCallback } from 'react'
 import { Form, Image, Button } from "semantic-ui-react"
 import { useDropzone } from "react-dropzone"
+import { useFormik } from "formik"
+import * as Yup from "yup"
 import "./AddEditCategory.scss"
+
+function initialValues() {
+
+    return {
+        title: "",
+        image: ""
+    }
+
+}
+
+function newSchema() {
+
+    return {
+        title: Yup.string().required(true),
+        image: Yup.string().required(true)
+    }
+
+}
 
 export const AddEditCategory = () => {
 
     const [previewImage, setPreviewImage] = useState(null)
 
-    const onDrop = useCallback(( imageFile ) => {
+    const { values, errors, handleSubmit, handleChange, setFieldValue } = useFormik({
+        initialValues: initialValues(),
+        validationSchema: Yup.object(newSchema()),
+        validateOnChange: false,
+        onSubmit: () => {
+            console.log(values)
+        }
+    })
+
+    const onDrop = useCallback(async ( imageFile ) => {
         const file = imageFile[0]
+        await setFieldValue('image', file)
         setPreviewImage(URL.createObjectURL(file))
     }, [])
 
@@ -21,9 +51,9 @@ export const AddEditCategory = () => {
  
     return (
 
-        <Form className="add-edit-category-form">
-            <Form.Input name="title" placeholder="Nombre de categoría" />
-            <Button type="button" fluid { ...getRootProps() }>Subir imagen</Button>
+        <Form className="add-edit-category-form" onSubmit={ handleSubmit }>
+            <Form.Input name="title" placeholder="Nombre de categoría" value={ values.title } onChange={ handleChange } error={ errors.title }/>
+            <Button type="button" fluid { ...getRootProps() } color={ errors.image && "red" }>Subir imagen</Button>
             <input { ...getInputProps() } />
             <Image fluid src={ previewImage }/>
             <Button type="submit" primary fluid>Crear</Button>
