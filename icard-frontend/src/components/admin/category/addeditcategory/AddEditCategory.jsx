@@ -38,8 +38,6 @@ export const AddEditCategory = ({ onClose, onRefresh, category }) => {
     const [previewImage, setPreviewImage] = useState(category?.image || null)
     const { addCategory, editCategory } = useCategory()
 
-    console.log(category)
-
     const { values, errors, handleSubmit, handleChange, setFieldValue } = useFormik({
         initialValues: initialValues(category),
         validationSchema: Yup.object( category ? editSchema() : newSchema() ),
@@ -47,7 +45,7 @@ export const AddEditCategory = ({ onClose, onRefresh, category }) => {
         onSubmit: async( formValue ) => {
             try {
                 
-                if (category) editCategory(category.id, formValue)
+                if (category) await editCategory(category.id, formValue)
                 else await addCategory(formValue)
                 // await addCategory(formValue)
                 onRefresh()
