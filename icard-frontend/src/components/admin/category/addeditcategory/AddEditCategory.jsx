@@ -27,8 +27,8 @@ function newSchema() {
 function editSchema() {
 
     return {
-        title: Yup.string().required(true),
-        image: Yup.string().required(true)
+        title: Yup.string(),
+        image: Yup.string()
     }
 
 }
