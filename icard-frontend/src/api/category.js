@@ -16,3 +16,32 @@ export async function getCategoriesAPI() {
     }
 
 }
+
+export async function createCategoryAPI( data, token ) {
+
+    try {
+        
+        const formData = new FormData();
+        formData.append('image', data.image);
+        formData.append('title', data.title);
+
+        const url = `${BASE_PATH}/api/categorias/`
+        const params = {
+            method: 'POST',
+            headers: {
+                Authorization: `Bearer ${ token }`
+            },
+            body: formData
+        }
+
+        const response = await fetch(url, params)
+        const result = await response.json()
+        return result
+
+    } catch (error) {
+
+        throw error
+
+    }
+
+}
