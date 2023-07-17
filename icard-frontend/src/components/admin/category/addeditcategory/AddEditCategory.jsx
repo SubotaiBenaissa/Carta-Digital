@@ -24,7 +24,7 @@ function newSchema() {
 
 }
 
-export const AddEditCategory = () => {
+export const AddEditCategory = ({ onClose, onRefresh }) => {
 
     const [previewImage, setPreviewImage] = useState(null)
     const { addCategory } = useCategory()
@@ -37,6 +37,8 @@ export const AddEditCategory = () => {
             try {
                 
                 await addCategory(formValue)
+                onRefresh()
+                onClose();
 
             } catch (error) {
 

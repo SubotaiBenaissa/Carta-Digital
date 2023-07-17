@@ -9,19 +9,22 @@ export const CategoriesAdmin = () => {
     const [showModal, setShowModal] = useState(false)
     const [titleModal, setTitleModal] = useState(null)
     const [contentModal, setContentModal] = useState(null)
+    const [refresh, setRefresh] = useState(false)
     const { loading, categories, getCategories } = useCategory()
 
     useEffect(() => {
         getCategories()
-    }, [])
+    }, [ refresh ])
     
     const openCloseModal = () => {
         setShowModal(prev => !prev)
     }
 
+    const onRefresh = () => setRefresh( (prev) => !prev )
+
     const addCategory = () => {
         setTitleModal("Nueva categoría")
-        setContentModal(<AddEditCategory />)
+        setContentModal(<AddEditCategory onClose={ openCloseModal } onRefresh={ onRefresh } />)
         openCloseModal()
     }
 
