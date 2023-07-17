@@ -24,6 +24,15 @@ function newSchema() {
 
 }
 
+function editSchema() {
+
+    return {
+        title: Yup.string().required(true),
+        image: Yup.string().required(true)
+    }
+
+}
+
 export const AddEditCategory = ({ onClose, onRefresh, category }) => {
 
     const [previewImage, setPreviewImage] = useState(category?.image || null)
@@ -33,12 +42,14 @@ export const AddEditCategory = ({ onClose, onRefresh, category }) => {
 
     const { values, errors, handleSubmit, handleChange, setFieldValue } = useFormik({
         initialValues: initialValues(category),
-        validationSchema: Yup.object(newSchema()),
+        validationSchema: Yup.object( category ? editSchema() : newSchema() ),
         validateOnChange: false,
         onSubmit: async( formValue ) => {
             try {
                 
-                await addCategory(formValue)
+                if (category) console.log("Editar categoría")
+                else await addCategory(formValue)
+                // await addCategory(formValue)
                 onRefresh()
                 onClose();
 
@@ -67,10 +78,10 @@ export const AddEditCategory = ({ onClose, onRefresh, category }) => {
 
         <Form className="add-edit-category-form" onSubmit={ handleSubmit }>
             <Form.Input name="title" placeholder="Nombre de categoría" value={ values.title } onChange={ handleChange } error={ errors.title }/>
-            <Button type="button" fluid { ...getRootProps() } color={ errors.image && "red" }>Subir imagen</Button>
+            <Button type="button" fluid { ...getRootProps() } color={ errors.image && "red" }>{ previewImage ? "Cambiar imagen" : "Subir imagen" }</Button>
             <input { ...getInputProps() } />
             <Image fluid src={ previewImage }/>
-            <Button type="submit" primary fluid>Crear</Button>
+            <Button type="submit" primary fluid>{ category ? "Actualizar" : "Crear" }</Button>
         </Form>
     
     )
