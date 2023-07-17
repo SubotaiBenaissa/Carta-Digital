@@ -3,7 +3,7 @@ import { Table, Image, Button, Icon } from 'semantic-ui-react';
 import { map } from 'lodash';
 import "./TableCategory.scss"
 
-export const TableCategoryAdmin = ({ categories, editCategory }) => {
+export const TableCategoryAdmin = ({ categories, editCategory, deleteCategory }) => {
 
     return (
 
@@ -27,7 +27,7 @@ export const TableCategoryAdmin = ({ categories, editCategory }) => {
                                 <Button icon onClick={() => editCategory( category )}>
                                     <Icon name="pencil" />
                                 </Button>
-                                <Button icon negative onClick={() => console.log("Eliminar Categoría")}>
+                                <Button icon negative onClick={() => deleteCategory( category ) }>
                                     <Icon name="close" />
                                 </Button>
                             </Table.Cell>

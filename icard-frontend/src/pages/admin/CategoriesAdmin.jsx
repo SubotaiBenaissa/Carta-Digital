@@ -34,6 +34,11 @@ export const CategoriesAdmin = () => {
         openCloseModal()
     }
 
+    const deleteCategory = (data) => {
+        const result = confirm(`Desea eliminar la categoría ${data.title} ?`)
+        if(result) console.log("Categoría eliminada")
+    }
+
     return (
         
         <>
@@ -43,7 +48,7 @@ export const CategoriesAdmin = () => {
                     Cargando...
                 </Loader>
             ) : (
-                <TableCategoryAdmin categories={ categories } editCategory={ editCategory }/>
+                <TableCategoryAdmin categories={ categories } editCategory={ editCategory } deleteCategory={ deleteCategory }/>
             ) }
             <ModalBasic show={ showModal } onClose={ openCloseModal } title={ titleModal } children={ contentModal }/>
         </>

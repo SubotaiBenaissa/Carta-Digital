@@ -74,3 +74,27 @@ export async function editCategoryAPI( id, data, token ) {
     }
 
 }
+
+export async function deleteCategoryAPI( id, token ) {
+
+    try {
+        
+        const url = `${ BASE_PATH }/api/categorias/${ id }/`
+        const params = {
+            method: 'DELETE',
+            headers: {
+                Authorization: `Bearer ${ token }`
+            }
+        }
+
+        const response = await fetch( url, params )
+        const result = response.json()
+        return result
+
+    } catch (error) {
+        
+        throw error
+
+    }
+
+}
