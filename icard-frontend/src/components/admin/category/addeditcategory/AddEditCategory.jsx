@@ -2,6 +2,7 @@ import React, { useState, useCallback } from 'react'
 import { Form, Image, Button } from "semantic-ui-react"
 import { useDropzone } from "react-dropzone"
 import { useFormik } from "formik"
+import { useCategory } from '../../../../hooks'
 import * as Yup from "yup"
 import "./AddEditCategory.scss"
 
@@ -26,13 +27,22 @@ function newSchema() {
 export const AddEditCategory = () => {
 
     const [previewImage, setPreviewImage] = useState(null)
+    const { addCategory } = useCategory()
 
     const { values, errors, handleSubmit, handleChange, setFieldValue } = useFormik({
         initialValues: initialValues(),
         validationSchema: Yup.object(newSchema()),
         validateOnChange: false,
-        onSubmit: () => {
-            console.log(values)
+        onSubmit: async( formValue ) => {
+            try {
+                
+                await addCategory(formValue)
+
+            } catch (error) {
+
+                throw error
+
+            }
         }
     })
 
