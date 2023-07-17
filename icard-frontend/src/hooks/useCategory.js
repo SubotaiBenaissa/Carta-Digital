@@ -66,7 +66,8 @@ export function useCategory () {
         error,
         categories,
         getCategories,
-        addCategory
+        addCategory,
+        editCategory
     }
 
 }

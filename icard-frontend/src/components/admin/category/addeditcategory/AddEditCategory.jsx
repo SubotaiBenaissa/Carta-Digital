@@ -36,7 +36,7 @@ function editSchema() {
 export const AddEditCategory = ({ onClose, onRefresh, category }) => {
 
     const [previewImage, setPreviewImage] = useState(category?.image || null)
-    const { addCategory } = useCategory()
+    const { addCategory, editCategory } = useCategory()
 
     console.log(category)
 
@@ -47,7 +47,7 @@ export const AddEditCategory = ({ onClose, onRefresh, category }) => {
         onSubmit: async( formValue ) => {
             try {
                 
-                if (category) console.log("Editar categoría")
+                if (category) editCategory(category.id, formValue)
                 else await addCategory(formValue)
                 // await addCategory(formValue)
                 onRefresh()
