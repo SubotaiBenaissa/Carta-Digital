@@ -10,7 +10,7 @@ export const CategoriesAdmin = () => {
     const [titleModal, setTitleModal] = useState(null)
     const [contentModal, setContentModal] = useState(null)
     const [refresh, setRefresh] = useState(false)
-    const { loading, categories, getCategories } = useCategory()
+    const { loading, categories, getCategories, deleteCategory } = useCategory()
 
     useEffect(() => {
         getCategories()
@@ -34,9 +34,12 @@ export const CategoriesAdmin = () => {
         openCloseModal()
     }
 
-    const deleteCategory = (data) => {
+    const onDeleteCategory = async (data) => {
         const result = confirm(`Desea eliminar la categoría ${data.title} ?`)
-        if(result) console.log("Categoría eliminada")
+        if(result) {
+            await deleteCategory( data.id )  
+            onRefresh()
+        }
     }
 
     return (
@@ -48,7 +51,7 @@ export const CategoriesAdmin = () => {
                     Cargando...
                 </Loader>
             ) : (
-                <TableCategoryAdmin categories={ categories } editCategory={ editCategory } deleteCategory={ deleteCategory }/>
+                <TableCategoryAdmin categories={ categories } editCategory={ editCategory } deleteCategory={ onDeleteCategory }/>
             ) }
             <ModalBasic show={ showModal } onClose={ openCloseModal } title={ titleModal } children={ contentModal }/>
         </>

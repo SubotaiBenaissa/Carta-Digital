@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { getCategoriesAPI, createCategoryAPI, editCategoryAPI } from "../api/category"
+import { getCategoriesAPI, createCategoryAPI, editCategoryAPI, deleteCategoryAPI } from "../api/category"
 import { useAuth } from "."
 
 export function useCategory () {
@@ -61,13 +61,31 @@ export function useCategory () {
 
     }
 
+    const deleteCategory = async(id) => {
+
+        try {
+
+            setLoading(true)
+            await deleteCategoryAPI( id, auth.token )
+            setLoading(false)
+            
+        } catch (error) {
+            
+            setLoading(false)
+            setError(error)
+
+        }
+
+    }
+
     return {
         loading,
         error,
         categories,
         getCategories,
         addCategory,
-        editCategory
+        editCategory,
+        deleteCategory
     }
 
 }
