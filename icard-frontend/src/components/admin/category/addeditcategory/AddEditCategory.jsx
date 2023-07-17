@@ -6,10 +6,10 @@ import { useCategory } from '../../../../hooks'
 import * as Yup from "yup"
 import "./AddEditCategory.scss"
 
-function initialValues() {
+function initialValues(category) {
 
     return {
-        title: "",
+        title: category?.title || "",
         image: ""
     }
 
@@ -24,13 +24,15 @@ function newSchema() {
 
 }
 
-export const AddEditCategory = ({ onClose, onRefresh }) => {
+export const AddEditCategory = ({ onClose, onRefresh, category }) => {
 
-    const [previewImage, setPreviewImage] = useState(null)
+    const [previewImage, setPreviewImage] = useState(category?.image || null)
     const { addCategory } = useCategory()
 
+    console.log(category)
+
     const { values, errors, handleSubmit, handleChange, setFieldValue } = useFormik({
-        initialValues: initialValues(),
+        initialValues: initialValues(category),
         validationSchema: Yup.object(newSchema()),
         validateOnChange: false,
         onSubmit: async( formValue ) => {

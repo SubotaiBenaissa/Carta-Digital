@@ -28,6 +28,12 @@ export const CategoriesAdmin = () => {
         openCloseModal()
     }
 
+    const editCategory = ( data ) => {
+        setTitleModal("Editar Categoría")
+        setContentModal( <AddEditCategory onClose={ openCloseModal } onRefresh={ onRefresh } category={ data } /> )
+        openCloseModal()
+    }
+
     return (
         
         <>
@@ -37,7 +43,7 @@ export const CategoriesAdmin = () => {
                     Cargando...
                 </Loader>
             ) : (
-                <TableCategoryAdmin categories={ categories }/>
+                <TableCategoryAdmin categories={ categories } editCategory={ editCategory }/>
             ) }
             <ModalBasic show={ showModal } onClose={ openCloseModal } title={ titleModal } children={ contentModal }/>
         </>
