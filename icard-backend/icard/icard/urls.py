@@ -21,6 +21,7 @@ from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 from Usuario.router import router_user
 from Categorias.router import router_categoria
+from Productos.router import router_product
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -37,7 +38,8 @@ urlpatterns = [
     path('redocs/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
     path('api/user', include(router_user.urls)),
     path('api/', include('Usuario.router')),
-    path('api/', include(router_categoria.urls))
+    path('api/', include(router_categoria.urls)),
+    path('api/', include(router_product.urls))
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
