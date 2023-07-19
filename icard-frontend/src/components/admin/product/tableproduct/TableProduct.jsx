@@ -25,6 +25,9 @@ export const TableProduct = ({ products }) => {
                             <Table.Cell width={ 2 }>
                                 <Image src={ product.image }/>
                             </Table.Cell>
+                            <Table.Cell>{ product.title }</Table.Cell>
+                            <Table.Cell>$ { product.price }</Table.Cell>
+                            <Table.Cell>{ product.category_data.title }</Table.Cell>
                         </Table.Row>
                     ) )
                 }
