@@ -6,9 +6,17 @@ export const EditAddProduct = ({ onClose }) => {
 
     return (
     
-        <div>
-            <h1>Edit Add Product</h1>
-        </div>
+        <Form className="add-edit-product-form">
+            <Form.Input name="title" placeholder="Nombre del producto" />
+            <Form.Input name="price" placeholder="Precio del producto" type="number" />
+            <Dropdown placeholder="Categoria" fluid search/>
+            <div className="add-edit-product-form__active">
+                <Checkbox toggle />
+                Producto Activo
+            </div>
+            <Button type="button" fluid> Subir imagen </Button>
+            <Button type="submit" primary fluid>Crear producto</Button>
+        </Form>
 
     )
 
