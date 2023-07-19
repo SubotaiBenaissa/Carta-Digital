@@ -14,8 +14,8 @@ export const TableProduct = ({ products }) => {
                     <Table.HeaderCell>Producto</Table.HeaderCell>
                     <Table.HeaderCell>Precio</Table.HeaderCell>
                     <Table.HeaderCell>Categoría</Table.HeaderCell>
+                    <Table.HeaderCell>Activo</Table.HeaderCell>
                     <Table.HeaderCell>Acciones</Table.HeaderCell>
-                    <Table.HeaderCell></Table.HeaderCell>
                 </Table.Row>
             </Table.Header>
             <Table.Body>
@@ -28,6 +28,17 @@ export const TableProduct = ({ products }) => {
                             <Table.Cell>{ product.title }</Table.Cell>
                             <Table.Cell>$ { product.price }</Table.Cell>
                             <Table.Cell>{ product.category_data.title }</Table.Cell>
+                            <Table.Cell className="status">
+                                { product.active ? <Icon name='check' /> : <Icon name="close"/> }
+                            </Table.Cell>
+                            <Table.Cell>
+                                <Button icon onClick={() => console.log("Editar")}>
+                                    <Icon name="pencil" />
+                                </Button>
+                                <Button icon negative onClick={() => console.log("Eliminar")}>
+                                    <Icon name="close" />
+                                </Button>
+                            </Table.Cell>
                         </Table.Row>
                     ) )
                 }
