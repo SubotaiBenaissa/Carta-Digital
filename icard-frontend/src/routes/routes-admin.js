@@ -24,7 +24,6 @@ const routesAdmin = [
         component: ProductAdmin,
         exact: true
     }
-
 ]
 
 export default routesAdmin
