@@ -1,7 +1,8 @@
 import React from 'react'
+import { Form, Image, Button, Dropdown, Checkbox } from "semantic-ui-react"
 import './EditAddProduct.scss'
 
-export const EditAddProduct = () => {
+export const EditAddProduct = ({ onClose }) => {
 
     return (
     
