@@ -9,6 +9,27 @@ export const useProduct = () => {
 
     const getProducts = async() => {
 
+        try {
+
+            setLoading(true)
+            const response = await getProductsAPI()
+            setLoading(false)
+            setProducts(response)
+            
+        } catch (error) {
+
+            setLoading(false)
+            setError(error)
+            
+        }
+
+    }
+
+    return {
+        loading,
+        error,
+        products,
+        getProducts
     }
 
 }
