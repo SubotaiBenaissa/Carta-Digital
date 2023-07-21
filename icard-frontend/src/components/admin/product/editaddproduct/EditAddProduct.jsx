@@ -36,7 +36,10 @@ export const EditAddProduct = ({ onClose }) => {
     }, [categories])
 
     const onDrop = useCallback( async( acceptedFile ) => {
-        console.log(acceptedFile)
+        
+        const file = acceptedFile[0];
+        setPreviewImage(URL.createObjectURL(file))
+
     }, [])
 
     const { getRootProps, getInputProps } = useDropzone({
