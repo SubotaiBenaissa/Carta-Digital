@@ -2,6 +2,8 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { map } from 'lodash'
 import { useDropzone } from 'react-dropzone'
 import { Form, Image, Button, Dropdown, Checkbox } from "semantic-ui-react"
+import { useFormik } from "formik"
+import * as Yup from "yup"
 import { useCategory } from '../../../../hooks'
 import './EditAddProduct.scss'
 
@@ -14,6 +16,34 @@ function formatDropdownData( data ) {
             value: item.id
         }
     ))
+
+}
+
+function initialValues() {
+
+    return {
+
+        title: "",
+        price: "",
+        category: "",
+        active: false,
+        image: ""
+
+    }
+
+}
+
+function productValidationSchema() {
+
+    return {
+
+        title: Yup.string().required(true),
+        price: Yup.number().required(true),
+        category: Yup.number().required(true),
+        active: Yup.boolean().required(true),
+        imge: Yup.string().required(true)
+
+    }
 
 }
 
@@ -34,6 +64,16 @@ export const EditAddProduct = ({ onClose }) => {
         setCategoriesFormat(formatDropdownData(categories))
 
     }, [categories])
+
+    const { values, handleSubmit } = useFormik({
+        initialValues: initialValues,
+        validationSchema: Yup.object(productValidationSchema()),
+        validateOnChange: false,
+        onSubmit: ( formValue ) => {
+            console.log("formulario enviado")
+            console.log(formValue)
+        }
+    })
 
     const onDrop = useCallback( async( acceptedFile ) => {
         
