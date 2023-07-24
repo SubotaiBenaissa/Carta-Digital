@@ -3,7 +3,7 @@ import { Table, Image, Button, Icon } from "semantic-ui-react"
 import { map } from 'lodash'
 import './TableProduct.scss'
 
-export const TableProduct = ({ products, updateProduct }) => {
+export const TableProduct = ({ products, updateProduct, deleteProduct }) => {
 
     return (
 

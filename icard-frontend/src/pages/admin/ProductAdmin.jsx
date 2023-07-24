@@ -35,6 +35,15 @@ export const ProductAdmin = () => {
 
     }
 
+    const onDeleteProduct = () => {
+
+        const result = confirm(`Desea eliminar el producto? ${ data.title }`)
+        if( result ) {
+            console.log("OK")
+        }
+
+    }
+
     return (
 
         <>
@@ -44,7 +53,7 @@ export const ProductAdmin = () => {
                     Cargando...
                 </Loader>
             ) : (
-                <TableProduct products={ products } updateProduct={ updateProduct }/>
+                <TableProduct products={ products } updateProduct={ updateProduct } deleteProduct={ onDeleteProduct }/>
             ) }
             <ModalBasic show={showModal} title={titleModal} children={contentModal} onClose={ openCloseModal } />
         </>

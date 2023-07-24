@@ -78,3 +78,27 @@ export async function updateProductAPI( id, data, token ) {
     }
 
 }
+
+export async function deleteProductAPI( id, token ) {
+
+    try {
+
+        const url = `${ BASE_PATH }/api/products/${ id }`
+        const params = {
+            method: "DELETE",
+            headers: {
+                Authorization: `Bearer ${ token }`
+            }
+        }
+
+        const response = await fetch(url, params);
+        const result = await response.json()
+        return result
+        
+    } catch (error) {
+
+        throw error
+        
+    }
+
+}
