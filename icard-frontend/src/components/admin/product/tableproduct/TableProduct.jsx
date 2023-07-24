@@ -3,7 +3,7 @@ import { Table, Image, Button, Icon } from "semantic-ui-react"
 import { map } from 'lodash'
 import './TableProduct.scss'
 
-export const TableProduct = ({ products }) => {
+export const TableProduct = ({ products, updateProduct }) => {
 
     return (
 
@@ -32,7 +32,7 @@ export const TableProduct = ({ products }) => {
                                 { product.active ? <Icon name='check' /> : <Icon name="close"/> }
                             </Table.Cell>
                             <Table.Cell>
-                                <Button icon onClick={() => console.log("Editar")}>
+                                <Button icon onClick={() => updateProduct(product)}>
                                     <Icon name="pencil" />
                                 </Button>
                                 <Button icon negative onClick={() => console.log("Eliminar")}>

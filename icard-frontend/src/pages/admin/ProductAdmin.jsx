@@ -44,7 +44,7 @@ export const ProductAdmin = () => {
                     Cargando...
                 </Loader>
             ) : (
-                <TableProduct products={ products }/>
+                <TableProduct products={ products } updateProduct={ updateProduct }/>
             ) }
             <ModalBasic show={showModal} title={titleModal} children={contentModal} onClose={ openCloseModal } />
         </>
