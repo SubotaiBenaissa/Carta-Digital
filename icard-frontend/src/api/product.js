@@ -28,12 +28,13 @@ export async function addProductAPI( data, token ) {
         formData.append('active', data.active)
         formData.append('image', data.image)
 
-        const url = `${ BASE_PATH }/api/products`;
+        const url = `${ BASE_PATH }/api/products/`;
         const params = {
             method: 'POST',
             headers: {
                 Authorization: `Bearer ${ token }`
-            }
+            },
+            body: formData
         }
         const response = await fetch(url, params)
         const result = await response.json()

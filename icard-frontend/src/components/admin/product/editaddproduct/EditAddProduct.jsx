@@ -4,7 +4,7 @@ import { useDropzone } from 'react-dropzone'
 import { Form, Image, Button, Dropdown, Checkbox } from "semantic-ui-react"
 import { useFormik } from "formik"
 import * as Yup from "yup"
-import { useCategory } from '../../../../hooks'
+import { useCategory, useProduct } from '../../../../hooks'
 import './EditAddProduct.scss'
 
 function formatDropdownData( data ) {
@@ -52,6 +52,7 @@ export const EditAddProduct = ({ onClose }) => {
     const { categories, getCategories } = useCategory()
     const [categoriesFormat, setCategoriesFormat] = useState([])
     const [previewImage, setPreviewImage] = useState(null)
+    const { addProduct } = useProduct()
 
     useEffect(() => {
         
@@ -69,9 +70,8 @@ export const EditAddProduct = ({ onClose }) => {
         initialValues: initialValues(),
         validationSchema: Yup.object(productValidationSchema()),
         validateOnChange: false,
-        onSubmit: ( formValue ) => {
-            console.log("formulario enviado")
-            console.log(formValue)
+        onSubmit: async( formValue ) => {
+            await addProduct(formValue)
         }
     })
 
