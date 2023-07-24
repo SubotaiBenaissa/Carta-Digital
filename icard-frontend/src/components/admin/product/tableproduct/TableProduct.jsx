@@ -35,7 +35,7 @@ export const TableProduct = ({ products, updateProduct, deleteProduct }) => {
                                 <Button icon onClick={() => updateProduct(product)}>
                                     <Icon name="pencil" />
                                 </Button>
-                                <Button icon negative onClick={() => console.log("Eliminar")}>
+                                <Button icon negative onClick={() => deleteProduct(product)}>
                                     <Icon name="close" />
                                 </Button>
                             </Table.Cell>
