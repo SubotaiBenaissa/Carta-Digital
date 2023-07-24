@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     'Usuario',
     'Categorias',
     'Productos',
+    'Mesas',
 ]
 
 MIDDLEWARE = [
