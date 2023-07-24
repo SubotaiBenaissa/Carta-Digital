@@ -85,7 +85,8 @@ export const EditAddProduct = ({ onClose, onRefresh, product }) => {
         validationSchema: Yup.object(product ? updateValidationSchema() : productValidationSchema()),
         validateOnChange: false,
         onSubmit: async( formValue ) => {
-            await addProduct(formValue)
+            if ( product ) console.log("Actualizar")
+            else await addProduct(formValue)
             onRefresh()
             onClose()
         }
@@ -134,7 +135,7 @@ export const EditAddProduct = ({ onClose, onRefresh, product }) => {
             <Button type="button" fluid { ...getRootProps() } color={ errors.image && "red" }> { previewImage ? "Cambiar imagen" : "Subir imagen" } </Button>
             <input {...getInputProps()}/>
             <Image src={ previewImage }/>
-            <Button type="submit" primary fluid>Crear producto</Button>
+            <Button type="submit" primary fluid>{ product ? "Actualizar producto" : "Crear Producto" }</Button>
         </Form>
 
     )
