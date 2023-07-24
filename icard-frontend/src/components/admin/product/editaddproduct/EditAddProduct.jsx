@@ -19,15 +19,15 @@ function formatDropdownData( data ) {
 
 }
 
-function initialValues() {
+function initialValues( data ) {
 
     return {
 
-        title: "",
-        price: "",
-        category: "",
-        active: false,
-        image: ""
+        title: data?.title || "",
+        price: data?.price || "",
+        category: data?.category || "",
+        active: data?.active ? true : false,
+        image: data?.image || ""
 
     }
 
@@ -47,11 +47,25 @@ function productValidationSchema() {
 
 }
 
-export const EditAddProduct = ({ onClose, onRefresh }) => {
+function updateValidationSchema() {
+
+    return {
+
+        title: Yup.string().required(true),
+        price: Yup.number().required(true),
+        category: Yup.number().required(true),
+        active: Yup.boolean().required(true),
+        image: Yup.string()
+
+    }
+
+}
+
+export const EditAddProduct = ({ onClose, onRefresh, product }) => {
 
     const { categories, getCategories } = useCategory()
     const [categoriesFormat, setCategoriesFormat] = useState([])
-    const [previewImage, setPreviewImage] = useState(null)
+    const [previewImage, setPreviewImage] = useState(product ? product.image : null)
     const { addProduct } = useProduct()
 
     useEffect(() => {
@@ -67,8 +81,8 @@ export const EditAddProduct = ({ onClose, onRefresh }) => {
     }, [categories])
 
     const { values, errors, handleSubmit, handleChange, setFieldValue } = useFormik({
-        initialValues: initialValues(),
-        validationSchema: Yup.object(productValidationSchema()),
+        initialValues: initialValues( product ),
+        validationSchema: Yup.object(product ? updateValidationSchema() : productValidationSchema()),
         validateOnChange: false,
         onSubmit: async( formValue ) => {
             await addProduct(formValue)
