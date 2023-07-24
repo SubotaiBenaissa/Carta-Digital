@@ -1,5 +1,5 @@
 import { useState } from "react" 
-import { getProductsAPI, addProductAPI, updateProductAPI } from "../api/product"
+import { getProductsAPI, addProductAPI, updateProductAPI, deleteProductAPI } from "../api/product"
 import { useAuth } from "."
 
 export const useProduct = () => {
@@ -61,13 +61,31 @@ export const useProduct = () => {
 
     }
 
+    const deleteProduct = async( id ) => {
+
+        try {
+
+            setLoading(true)
+            await deleteProductAPI( id, auth.token )
+            setLoading(false)
+            
+        } catch (error) {
+            
+            setLoading(false)
+            setError(error)
+
+        }
+
+    }
+
     return {
         loading,
         error,
         products,
         getProducts,
         addProduct,
-        updateProduct
+        updateProduct,
+        deleteProduct
     }
 
 }

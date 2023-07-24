@@ -10,7 +10,7 @@ export const ProductAdmin = () => {
     const [titleModal, setTitleModal] = useState(null)
     const [contentModal, setContentModal] = useState(null)
     const [refresh, setRefresh] = useState(false)
-    const { loading, products, getProducts } = useProduct()
+    const { loading, products, getProducts, deleteProduct } = useProduct()
 
     useEffect(() => {
         getProducts()
@@ -35,11 +35,12 @@ export const ProductAdmin = () => {
 
     }
 
-    const onDeleteProduct = () => {
+    const onDeleteProduct = async( data ) => {
 
         const result = confirm(`Desea eliminar el producto? ${ data.title }`)
         if( result ) {
-            console.log("OK")
+            await deleteProduct(data.id)
+            onRefresh()
         }
 
     }

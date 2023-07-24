@@ -27,7 +27,7 @@ export const TableProduct = ({ products, updateProduct, deleteProduct }) => {
                             </Table.Cell>
                             <Table.Cell>{ product.title }</Table.Cell>
                             <Table.Cell>$ { product.price }</Table.Cell>
-                            <Table.Cell>{ product.category_data.title }</Table.Cell>
+                            <Table.Cell>{ product.category_data?.title || "Sin categoría" }</Table.Cell>
                             <Table.Cell className="status">
                                 { product.active ? <Icon name='check' /> : <Icon name="close"/> }
                             </Table.Cell>
