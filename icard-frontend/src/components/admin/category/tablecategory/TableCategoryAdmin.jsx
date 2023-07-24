@@ -12,7 +12,7 @@ export const TableCategoryAdmin = ({ categories, editCategory, deleteCategory })
                 <Table.Row>
                     <Table.HeaderCell>Imagen</Table.HeaderCell>
                     <Table.HeaderCell>Nombre</Table.HeaderCell>
-                    <Table.HeaderCell textAlign="center">Acciones</Table.HeaderCell>
+                    <Table.HeaderCell textAlign="right">Acciones</Table.HeaderCell>
                 </Table.Row>
             </Table.Header>
             <Table.Body>

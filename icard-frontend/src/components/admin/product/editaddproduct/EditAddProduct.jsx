@@ -27,7 +27,7 @@ function initialValues( data ) {
         price: data?.price || "",
         category: data?.category || "",
         active: data?.active ? true : false,
-        image: data?.image || ""
+        image: ""
 
     }
 
@@ -66,7 +66,7 @@ export const EditAddProduct = ({ onClose, onRefresh, product }) => {
     const { categories, getCategories } = useCategory()
     const [categoriesFormat, setCategoriesFormat] = useState([])
     const [previewImage, setPreviewImage] = useState(product ? product.image : null)
-    const { addProduct } = useProduct()
+    const { addProduct, updateProduct } = useProduct()
 
     useEffect(() => {
         
@@ -85,7 +85,7 @@ export const EditAddProduct = ({ onClose, onRefresh, product }) => {
         validationSchema: Yup.object(product ? updateValidationSchema() : productValidationSchema()),
         validateOnChange: false,
         onSubmit: async( formValue ) => {
-            if ( product ) console.log("Actualizar")
+            if ( product ) await updateProduct( product.id, formValue )
             else await addProduct(formValue)
             onRefresh()
             onClose()
