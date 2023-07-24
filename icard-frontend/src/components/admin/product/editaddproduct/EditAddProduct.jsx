@@ -47,7 +47,7 @@ function productValidationSchema() {
 
 }
 
-export const EditAddProduct = ({ onClose }) => {
+export const EditAddProduct = ({ onClose, onRefresh }) => {
 
     const { categories, getCategories } = useCategory()
     const [categoriesFormat, setCategoriesFormat] = useState([])
@@ -72,6 +72,8 @@ export const EditAddProduct = ({ onClose }) => {
         validateOnChange: false,
         onSubmit: async( formValue ) => {
             await addProduct(formValue)
+            onRefresh()
+            onClose()
         }
     })
 

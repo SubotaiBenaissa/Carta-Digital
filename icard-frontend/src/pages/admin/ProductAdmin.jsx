@@ -9,18 +9,20 @@ export const ProductAdmin = () => {
     const [showModal, setShowModal] = useState(false)
     const [titleModal, setTitleModal] = useState(null)
     const [contentModal, setContentModal] = useState(null)
+    const [refresh, setRefresh] = useState(false)
     const { loading, products, getProducts } = useProduct()
 
     useEffect(() => {
         getProducts()
-    }, [])
+    }, [ refresh ])
     
-    const openCloseModal = () => setShowModal((prev) => !prev)
+    const openCloseModal = () => setShowModal(( prev ) => !prev)
+    const onRefresh = () => setRefresh(( prev ) => !prev)
 
     const addProduct = () => {
 
         setTitleModal("Agregar producto")
-        setContentModal(<EditAddProduct onClose={ openCloseModal } />)
+        setContentModal(<EditAddProduct onClose={ openCloseModal } onRefresh={ onRefresh } />)
         openCloseModal()
 
     }
