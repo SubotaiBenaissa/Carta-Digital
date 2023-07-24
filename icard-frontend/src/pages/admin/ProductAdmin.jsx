@@ -27,6 +27,14 @@ export const ProductAdmin = () => {
 
     }
 
+    const updateProduct = ( data ) => {
+
+        setTitleModal("Editar producto")
+        setContentModal(<EditAddProduct onClose={ openCloseModal } onRefresh={ onRefresh } product={ data } />)
+        openCloseModal()
+
+    }
+
     return (
 
         <>
