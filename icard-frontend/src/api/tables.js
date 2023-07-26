@@ -79,7 +79,7 @@ export async function deleteTableAPI( id, token ) {
 
     try {
 
-        const url = `${ BASE_PATH }/api/tables/${id}/`
+        const url = `${ BASE_PATH }/api/mesas/${ id }/`
         const params = {
             method: "DELETE",
             headers: {

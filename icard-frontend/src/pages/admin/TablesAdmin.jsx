@@ -10,7 +10,7 @@ export const TablesAdmin = () => {
     const [titleModal, setTitleModal] = useState("")
     const [contentModal, setContentModal] = useState(null)
     const [refresh, setRefresh] = useState(false)
-    const { tables, loading, getTables } = useTable()
+    const { tables, loading, getTables, deleteTable } = useTable()
 
     useEffect(() => {
         
@@ -33,10 +33,11 @@ export const TablesAdmin = () => {
         openCloseModal()
     }
 
-    const onDeleteTable = async(data) => {
+    const onDeleteTable = async( data ) => {
         const result = confirm(`Desea eliminar la mesa ${data.number}?`)
         if (result) {
-            console.log("Eliminar")
+            await deleteTable( data.number )
+            onRefresh()
         }
     }
 
