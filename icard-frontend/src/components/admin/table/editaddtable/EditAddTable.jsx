@@ -5,9 +5,9 @@ import * as Yup from "yup"
 import { useTable } from "../../../../hooks"
 import "./EditAddTable.scss"
 
-function initialValues() {
+function initialValues( data ) {
     return {
-        number: ""
+        number: data?.number || "",
     }
 }
 
@@ -17,16 +17,17 @@ function tableSchema() {
     }
 }
 
-export const EditAddTable = ({ onClose, onRefresh }) => {
+export const EditAddTable = ({ onClose, onRefresh, table }) => {
 
     const { addTable } = useTable()
 
     const { values, errors, handleSubmit, handleChange } = useFormik({
-        initialValues: initialValues(),
+        initialValues: initialValues( table ),
         validationSchema: Yup.object(tableSchema()),
         validateOnChange: false,
         onSubmit: async ( formValue ) => {
-            await addTable(formValue)
+            if ( table ) console.log("Actualizar tabla")
+            else await addTable(formValue)
             onRefresh()
             onClose()
         }
@@ -39,13 +40,14 @@ export const EditAddTable = ({ onClose, onRefresh }) => {
                 name="number" 
                 type="number" 
                 placeholder="Numero de mesa" 
-                values={ values.number } 
+                value={ values.number } 
                 onChange={ handleChange } 
                 error={ errors.number }
             />
-            <Button type="submit" primary fluid content="Crear" />
+            <Button type="submit" primary fluid content={ table ? "Actualizar" : "Crear" } />
         </Form>
 
     )
 
 }
+

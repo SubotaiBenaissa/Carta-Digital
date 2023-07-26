@@ -27,6 +27,12 @@ export const TablesAdmin = () => {
         openCloseModal()
     }
 
+    const updateTable = ( data ) => {
+        setTitleModal("Actualizar mesa")
+        setContentModal(<EditAddTable onClose={ openCloseModal } onRefresh={ onRefresh } table={ data } />)
+        openCloseModal()
+    }
+
     return (
 
         <>
@@ -37,7 +43,7 @@ export const TablesAdmin = () => {
                         Cargando...
                     </Loader>
                 ) : (
-                    <TableComponent tables={ tables } />
+                    <TableComponent tables={ tables } updateTable={ updateTable } />
                 )
             }  
             <ModalBasic show={ showModal } onClose={ openCloseModal } title={ titleModal } children={ contentModal } />  
