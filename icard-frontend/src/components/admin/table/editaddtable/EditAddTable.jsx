@@ -21,9 +21,9 @@ export const EditAddTable = ({ onClose, onRefresh }) => {
 
     const { addTable } = useTable()
 
-    const { values, errors, handleChange, handleSubmit } = useFormik({
+    const { values, errors, handleSubmit, handleChange } = useFormik({
         initialValues: initialValues(),
-        validationSchema: Yup.object(tableSchema),
+        validationSchema: Yup.object(tableSchema()),
         validateOnChange: false,
         onSubmit: async ( formValue ) => {
             await addTable(formValue)

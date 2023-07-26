@@ -29,10 +29,10 @@ export async function addTableAPI( data, token ) {
 
         const url = `${ BASE_PATH }/api/mesas/`
         const params = {
+            method: "POST",
             headers: {
-                method: 'POST',
                 Authorization: `Bearer ${ token }`,
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
             },
             body: JSON.stringify(data)
         }
