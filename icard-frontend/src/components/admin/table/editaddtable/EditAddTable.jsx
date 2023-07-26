@@ -26,7 +26,7 @@ function tableSchema() {
 
 export const EditAddTable = ({ onClose }) => {
 
-    const formik = useFormik({
+    const { values, errors, handleChange, handleSubmit } = useFormik({
         initialValues: initialValues(),
         validationSchema: Yup.object(tableSchema),
         validateOnChange: false,
@@ -38,8 +38,15 @@ export const EditAddTable = ({ onClose }) => {
  
     return (
 
-        <Form className="add-edit-table-form">
-            <Form.Input name="number" type="number" placeholder="Numero de mesa" />
+        <Form className="add-edit-table-form" onSubmit={ handleSubmit }>
+            <Form.Input 
+                name="number" 
+                type="number" 
+                placeholder="Numero de mesa" 
+                values={ values.number } 
+                onChange={ handleChange } 
+                error={ errors.number }
+            />
             <Button type="submit" primary fluid content="Crear" />
         </Form>
 
