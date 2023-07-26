@@ -48,3 +48,29 @@ export async function addTableAPI( data, token ) {
     }
 
 }
+
+export async function updateTableAPI( id, data, token ) {
+
+    try {
+
+        const url = `${ BASE_PATH }/api/mesas/${id}/`
+        const params = {
+            method: 'PATCH',
+            headers: {
+                Authorization: `Bearer ${ token }`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify( data )
+        }
+
+        const response = await fetch(url, params)
+        const result = await response.json()
+        return response
+        
+    } catch (error) {
+
+        throw error
+    
+    }
+
+}
