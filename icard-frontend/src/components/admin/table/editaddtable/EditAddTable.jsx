@@ -19,14 +19,14 @@ function tableSchema() {
 
 export const EditAddTable = ({ onClose, onRefresh, table }) => {
 
-    const { addTable } = useTable()
+    const { addTable, updateTable } = useTable()
 
     const { values, errors, handleSubmit, handleChange } = useFormik({
         initialValues: initialValues( table ),
         validationSchema: Yup.object(tableSchema()),
         validateOnChange: false,
         onSubmit: async ( formValue ) => {
-            if ( table ) console.log("Actualizar tabla")
+            if ( table ) await updateTable(table.id, formValue)
             else await addTable(formValue)
             onRefresh()
             onClose()
