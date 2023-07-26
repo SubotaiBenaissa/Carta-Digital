@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { HeaderPage } from '../../components/admin'
+import { HeaderPage, TableComponent } from '../../components/admin'
 import { useTable } from '../../hooks'
 import { Loader } from 'semantic-ui-react'
 
@@ -12,8 +12,6 @@ export const TablesAdmin = () => {
         getTables()
 
     }, [])
-    
-    console.log(tables)
 
     return (
 
@@ -25,7 +23,7 @@ export const TablesAdmin = () => {
                         Cargando...
                     </Loader>
                 ) : (
-                    <h2>Listado de mesas</h2>
+                    <TableComponent tables={ tables } />
                 )
             }    
         </>
