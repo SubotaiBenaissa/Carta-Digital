@@ -28,7 +28,12 @@ export const EditAddTable = ({ onClose }) => {
 
     const formik = useFormik({
         initialValues: initialValues(),
-        validationSchema: Yup.object(tableSchema)
+        validationSchema: Yup.object(tableSchema),
+        validateOnChange: false,
+        onSubmit: () => {
+            console.log("Enviando formulario")
+            console.log(formValue)
+        }
     })
  
     return (
