@@ -5,23 +5,15 @@ import * as Yup from "yup"
 import "./EditAddTable.scss"
 
 function initialValues() {
-
     return {
-
         number: ""
-
     }
-
 }
 
 function tableSchema() {
-
     return {
-
         number: Yup.number().required(true)
-
     }
-
 }
 
 export const EditAddTable = ({ onClose }) => {

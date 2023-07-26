@@ -22,3 +22,29 @@ export async function getTablesAPI( token ) {
     }
 
 }
+
+export async function addTableAPI( data, token ) {
+
+    try {
+
+        const url = `${ BASE_PATH }/api/mesas/`
+        const params = {
+            headers: {
+                method: 'POST',
+                Authorization: `Bearer ${ token }`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        }
+
+        const response = await fetch(url, params)
+        const result = await response.json()
+        return result
+        
+    } catch (error) {
+        
+        throw error
+
+    }
+
+}
