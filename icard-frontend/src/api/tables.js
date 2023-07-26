@@ -74,3 +74,27 @@ export async function updateTableAPI( id, data, token ) {
     }
 
 }
+
+export async function deleteTableAPI( id, token ) {
+
+    try {
+
+        const url = `${ BASE_PATH }/api/tables/${id}/`
+        const params = {
+            method: "DELETE",
+            headers: {
+                Authorization: `Bearer ${ token }`
+            }
+        }
+
+        const response = await fetch(url, params)
+        const result = await response.json()
+        return result
+        
+    } catch (error) {
+        
+        throw error
+
+    }
+
+}
