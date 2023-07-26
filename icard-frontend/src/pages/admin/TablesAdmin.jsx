@@ -1,10 +1,14 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { HeaderPage, TableComponent } from '../../components/admin'
+import { ModalBasic } from "../../components/common"
 import { useTable } from '../../hooks'
 import { Loader } from 'semantic-ui-react'
 
 export const TablesAdmin = () => {
 
+    const [showModal, setShowModal] = useState(false)
+    const [titleModal, setTitleModal] = useState("")
+    const [contentModal, setContentModal] = useState(null)
     const { tables, loading, getTables } = useTable()
 
     useEffect(() => {
@@ -13,10 +17,18 @@ export const TablesAdmin = () => {
 
     }, [])
 
+    const openCloseModal = () => setShowModal((prev) => !prev)
+
+    const addTable = () => {
+        setTitleModal("Crear mesa")
+        setContentModal(<h1>Crear mesa</h1>)
+        openCloseModal()
+    }
+
     return (
 
         <>
-            <HeaderPage title="Mesas" btnTitle="Crear nueva mesa"/>
+            <HeaderPage title="Mesas" btnTitle="Crear nueva mesa" btnClick={ addTable }/>
             {
                 loading ? (
                     <Loader active inline="centered">
@@ -25,7 +37,8 @@ export const TablesAdmin = () => {
                 ) : (
                     <TableComponent tables={ tables } />
                 )
-            }    
+            }  
+            <ModalBasic show={ showModal } onClose={ openCloseModal } title={ titleModal } children={ contentModal } />  
         </>
 
     )
