@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { HeaderPage, TableComponent } from '../../components/admin'
+import { HeaderPage, TableComponent, EditAddTable } from '../../components/admin'
 import { ModalBasic } from "../../components/common"
 import { useTable } from '../../hooks'
 import { Loader } from 'semantic-ui-react'
@@ -21,7 +21,7 @@ export const TablesAdmin = () => {
 
     const addTable = () => {
         setTitleModal("Crear mesa")
-        setContentModal(<h1>Crear mesa</h1>)
+        setContentModal(<EditAddTable onClose={ openCloseModal } />)
         openCloseModal()
     }
 
