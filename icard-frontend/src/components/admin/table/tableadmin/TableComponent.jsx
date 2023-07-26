@@ -3,7 +3,7 @@ import { Table, Button, Icon } from 'semantic-ui-react'
 import { map } from 'lodash'
 import "./TableComponent.scss"
 
-export const TableComponent = ({ tables, updateTable }) => {
+export const TableComponent = ({ tables, updateTable, deleteTable }) => {
 
     return (
         
@@ -23,7 +23,7 @@ export const TableComponent = ({ tables, updateTable }) => {
                                 <Button icon onClick={() => updateTable(table)}>
                                     <Icon name="pencil" />
                                 </Button>
-                                <Button negative icon onClick={() => console.log("Eliminar mesa")}>
+                                <Button negative icon onClick={() => deleteTable(table)}>
                                     <Icon name="close" />
                                 </Button>
                             </Table.Cell>

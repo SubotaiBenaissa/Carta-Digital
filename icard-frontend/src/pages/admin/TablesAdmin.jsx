@@ -33,6 +33,13 @@ export const TablesAdmin = () => {
         openCloseModal()
     }
 
+    const onDeleteTable = async(data) => {
+        const result = confirm(`Desea eliminar la mesa ${data.number}?`)
+        if (result) {
+            console.log("Eliminar")
+        }
+    }
+
     return (
 
         <>
@@ -43,7 +50,7 @@ export const TablesAdmin = () => {
                         Cargando...
                     </Loader>
                 ) : (
-                    <TableComponent tables={ tables } updateTable={ updateTable } />
+                    <TableComponent tables={ tables } updateTable={ updateTable } deleteTable={ onDeleteTable } />
                 )
             }  
             <ModalBasic show={ showModal } onClose={ openCloseModal } title={ titleModal } children={ contentModal } />  
