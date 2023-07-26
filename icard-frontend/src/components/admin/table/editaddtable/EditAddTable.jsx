@@ -2,6 +2,7 @@ import React from 'react'
 import { Form, Button } from "semantic-ui-react"
 import { useFormik } from "formik"
 import * as Yup from "yup"
+import { useTable } from "../../../../hooks"
 import "./EditAddTable.scss"
 
 function initialValues() {
@@ -16,15 +17,18 @@ function tableSchema() {
     }
 }
 
-export const EditAddTable = ({ onClose }) => {
+export const EditAddTable = ({ onClose, onRefresh }) => {
+
+    const { addTable } = useTable()
 
     const { values, errors, handleChange, handleSubmit } = useFormik({
         initialValues: initialValues(),
         validationSchema: Yup.object(tableSchema),
         validateOnChange: false,
-        onSubmit: () => {
-            console.log("Enviando formulario")
-            console.log(formValue)
+        onSubmit: async ( formValue ) => {
+            await addTable(formValue)
+            onRefresh()
+            onClose()
         }
     })
  
