@@ -1,7 +1,6 @@
 import React from 'react'
-import { Label, Button, Icon, Checkbox } from 'semantic-ui-react'
 import { map, size } from 'lodash'
-import table from '../../../../assets/table.svg'
+import { TableItem } from '../tableitem'
 import "./TableList.scss"
 
 export const TableList = ({ tables }) => {
@@ -11,7 +10,7 @@ export const TableList = ({ tables }) => {
         <div className="tables-list-admin">
             {
                 map(tables, (table) => (
-                    <h2>Mesa</h2>
+                    <TableItem key={ table.number } table={ table }/>
                 ))
             }
         </div>
