@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { Loader } from 'semantic-ui-react';
-import { HeaderPage } from "../../components/admin"
+import { HeaderPage, TableList } from "../../components/admin"
 import { useTable } from "../../hooks";
 
 export const OrdersAdmin = () => {
@@ -23,7 +23,7 @@ export const OrdersAdmin = () => {
                         Cargando...
                     </Loader>
                 ) : (
-                    <h2>Lista mesas</h2>
+                    <TableList tables={ tables } />
                 )
             }
         </>
