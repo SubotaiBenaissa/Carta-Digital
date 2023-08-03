@@ -14,6 +14,7 @@ export const TableList = ({ tables }) => {
     }
 
     useEffect(() => {
+
         if(autoReload) {
             const autoReloadAction = () => {
 
@@ -24,7 +25,16 @@ export const TableList = ({ tables }) => {
                 }, 5000)
             }
         }
+
     }, [autoReload])
+
+    const onCheckAutoReload = (check) => {
+        if(check) {
+            setAutoReload(check)
+        } else {
+            window.location.reload()
+        }
+    }
 
     return (
 
@@ -34,7 +44,7 @@ export const TableList = ({ tables }) => {
             </Button>
             <div className="tables-list-admin__reload-toggle">
                 <span>Reload automático</span>
-                <Checkbox toggle onChange={ (_, data) => console.log(data.checked) }/>
+                <Checkbox toggle checked={ autoReload } onChange={ (_, data) => onCheckAutoReload(data.checked) }/>
             </div>
             {
                 map(tables, (table) => (
