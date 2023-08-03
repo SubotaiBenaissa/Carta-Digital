@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { size } from 'lodash'
 import classNames from "classnames"
+import { Link } from "react-router-dom"
 import { Label, Button, Icon, Checkbox } from 'semantic-ui-react'
 import { getOrderByTableAPI } from '../../../../api/orders'
 import { OrderStatus } from '../../../../utils/constants'
@@ -29,7 +30,7 @@ export const TableItem = ({ table }) => {
     }, [])
 
     return (
-        <div className="table-item">
+        <Link className="table-item" to={`/admin/table/${table.id}`}>
             {
                 size(orders) > 0 ? (
                     <Label circular color="orange">
@@ -42,7 +43,7 @@ export const TableItem = ({ table }) => {
                 busy: tableBusy,
             })} />
             <p>Mesa { table.number }</p>
-        </div>
+        </Link>
     )
 
 }
