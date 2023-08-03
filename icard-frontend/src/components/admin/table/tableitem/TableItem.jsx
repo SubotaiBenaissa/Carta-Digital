@@ -9,7 +9,7 @@ import tablesvg from '../../../../assets/table.svg'
 import "./TableItem.scss"
 
 
-export const TableItem = ({ table }) => {
+export const TableItem = ({ table, reload }) => {
     
     const [orders, setOrders] = useState([])
     const [tableBusy, setTableBusy] = useState(false)
@@ -19,7 +19,7 @@ export const TableItem = ({ table }) => {
             const response = await getOrderByTableAPI(table.number, OrderStatus.PENDIENTE)
             setOrders(response)
         })()
-    }, [])
+    }, [reload])
 
     useEffect(() => {
         (async () => {
@@ -27,7 +27,7 @@ export const TableItem = ({ table }) => {
             if(size(response) > 0) setTableBusy(response)
             else setTableBusy(false)
         })()
-    }, [])
+    }, [reload])
 
     return (
         <Link className="table-item" to={`/admin/table/${table.id}`}>

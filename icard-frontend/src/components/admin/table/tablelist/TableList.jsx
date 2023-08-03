@@ -1,10 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Button, Icon, Checkbox } from "semantic-ui-react"
 import { map, size } from 'lodash'
 import { TableItem } from '../tableitem'
 import "./TableList.scss"
 
 export const TableList = ({ tables }) => {
+
+    const [reload, setReload] = useState(false)
+
+    const onReload = () => {
+        setReload((prev) => !prev)
+    }
 
     return (
 
@@ -18,7 +24,7 @@ export const TableList = ({ tables }) => {
             </div>
             {
                 map(tables, (table) => (
-                    <TableItem key={ table.number } table={ table }/>
+                    <TableItem key={ table.number } table={ table } reload={ onReload }/>
                 ))
             }
         </div>
