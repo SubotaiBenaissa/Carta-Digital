@@ -11,11 +11,20 @@ import "./TableItem.scss"
 export const TableItem = ({ table }) => {
     
     const [orders, setOrders] = useState([])
+    const [tableBusy, setTableBusy] = useState(false)
 
     useEffect(() => {
         (async () => {
             const response = await getOrderByTableAPI(table.number, OrderStatus.PENDIENTE)
             setOrders(response)
+        })()
+    }, [])
+
+    useEffect(() => {
+        (async () => {
+            const response = await getOrderByTableAPI(table.number, OrderStatus.ENTREGADO)
+            if(size(response) > 0) setTableBusy(response)
+            else setTableBusy(false)
         })()
     }, [])
 
@@ -29,7 +38,8 @@ export const TableItem = ({ table }) => {
                 ) : null
             }
             <img src={ tablesvg } className={classNames({
-                pendiente: size(orders) > 0
+                pendiente: size(orders) > 0,
+                busy: tableBusy,
             })} />
             <p>Mesa { table.number }</p>
         </div>
