@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { size } from 'lodash'
+import classNames from "classnames"
 import { Label, Button, Icon, Checkbox } from 'semantic-ui-react'
 import { getOrderByTableAPI } from '../../../../api/orders'
 import { OrderStatus } from '../../../../utils/constants'
@@ -27,7 +28,9 @@ export const TableItem = ({ table }) => {
                     </Label>
                 ) : null
             }
-            <img src={ tablesvg } alt="" />
+            <img src={ tablesvg } className={classNames({
+                pendiente: size(orders) > 0
+            })} />
             <p>Mesa { table.number }</p>
         </div>
     )
