@@ -15,7 +15,7 @@ export const TableList = ({ tables }) => {
     return (
 
         <div className="tables-list-admin">
-            <Button primary icon className="tables-list-admin__reload" onClick={() => console.log('Reload')}>
+            <Button primary icon className="tables-list-admin__reload" onClick={ onReload }>
                 <Icon name="refresh"></Icon>
             </Button>
             <div className="tables-list-admin__reload-toggle">
