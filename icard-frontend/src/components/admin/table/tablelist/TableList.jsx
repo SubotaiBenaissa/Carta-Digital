@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Button, Icon, Checkbox } from "semantic-ui-react"
 import { map, size } from 'lodash'
 import { TableItem } from '../tableitem'
@@ -7,10 +7,24 @@ import "./TableList.scss"
 export const TableList = ({ tables }) => {
 
     const [reload, setReload] = useState(false)
+    const [autoReload, setAutoReload] = useState(false)
 
     const onReload = () => {
         setReload((prev) => !prev)
     }
+
+    useEffect(() => {
+        if(autoReload) {
+            const autoReloadAction = () => {
+
+                onReload()
+
+                setTimeout(() => {
+                    autoReloadAction()
+                }, 5000)
+            }
+        }
+    }, [autoReload])
 
     return (
 
