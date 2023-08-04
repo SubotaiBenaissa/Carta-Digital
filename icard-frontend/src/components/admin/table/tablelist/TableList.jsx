@@ -24,6 +24,7 @@ export const TableList = ({ tables }) => {
                     autoReloadAction()
                 }, 5000)
             }
+            autoReloadAction()
         }
 
     }, [autoReload])
