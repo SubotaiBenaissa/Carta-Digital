@@ -26,6 +26,9 @@ export function useOrder() {
     }
 
     return { 
+        loading,
+        errors,
+        orders,
         getOrderByTable
     }
 
