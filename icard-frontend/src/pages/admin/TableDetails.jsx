@@ -1,22 +1,31 @@
 import React, { useEffect } from 'react'
+import { Loader } from "semantic-ui-react"
 import { useOrder } from "../../hooks"
 import { useParams } from "react-router-dom"
 
 export const TableDetails = () => {
 
-    const params = useParams()
-    console.log(params)
+    const { id } = useParams()
     const { loading, orders, getOrderByTable } = useOrder()
 
-    // useEffect(() => {
-    //     getOrderByTable()
-    // }, [])
-    
+    useEffect(() => {
+        getOrderByTable(id)
+    }, [])
 
+    console.log(orders)
+    
     return (
-        <div>
-            <h2>Detalle de la mesa</h2>
-        </div>
+        <>
+            {
+                loading ? (
+                    <Loader active inline="centered">
+                        Cargando...
+                    </Loader>
+                ) : (
+                    <h2>Lista pedidos</h2>
+                )
+            }
+        </>
     )
 
 }
