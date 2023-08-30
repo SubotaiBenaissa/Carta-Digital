@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { Loader } from "semantic-ui-react"
 import { useOrder } from "../../hooks"
+import { HeaderPage } from "../../components/admin"
 import { useParams } from "react-router-dom"
 
 export const TableDetails = () => {
@@ -15,7 +16,7 @@ export const TableDetails = () => {
     console.log(orders)
     
     return (
-        <>
+        <HeaderPage title="Mesa">
             {
                 loading ? (
                     <Loader active inline="centered">
@@ -25,7 +26,7 @@ export const TableDetails = () => {
                     <h2>Lista pedidos</h2>
                 )
             }
-        </>
+        </HeaderPage>
     )
 
 }
