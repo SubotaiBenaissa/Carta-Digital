@@ -1,11 +1,17 @@
 import React from 'react'
+import { map } from "lodash"
+import "./ListOrder.scss"
 
-export const ListOrder = () => {
+export const ListOrder = ({ orders }) => {
 
     return (
 
-        <div>
-            <h1>List order</h1>
+        <div className="list-orders-admin">
+            {
+                map(orders, ( order ) => (
+                    <h2 key={ order.id }>Pedido...</h2>
+                ))
+            }
         </div>
 
     )
