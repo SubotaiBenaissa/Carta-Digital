@@ -10,7 +10,7 @@ export const ListOrder = ({ orders }) => {
         <div className="list-orders-admin">
             {
                 map(orders, ( order ) => (
-                    <h2 key={ order.id }>Pedido...</h2>
+                    <OrderItem key={ order.id } order={ order }/>
                 ))
             }
         </div>
