@@ -1,5 +1,6 @@
 import React from 'react'
 import { map } from "lodash"
+import { OrderItem } from "../"
 import "./ListOrder.scss"
 
 export const ListOrder = ({ orders }) => {
