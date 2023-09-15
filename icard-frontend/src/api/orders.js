@@ -1,4 +1,4 @@
-import { BASE_PATH } from "../utils/constants";
+import { BASE_PATH, OrderStatus } from "../utils/constants";
 
 export async function getOrderByTableAPI( id, status="", ordering="" ) {
 
@@ -17,6 +17,33 @@ export async function getOrderByTableAPI( id, status="", ordering="" ) {
         
         throw error
 
+    }
+
+}
+
+export async function checkDeliveredOrderAPI(id) {
+
+    try {
+
+        const url = `${BASE_PATH}/api/pedidos/${id}/`
+        const params = {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                status: OrderStatus.ENTREGADO
+            })
+        }
+
+        const response = await fetch(url, params);
+        const result = await response.json();
+        return result;
+
+    } catch(error) {
+
+        throw error
+    
     }
 
 }
