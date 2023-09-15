@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { Loader } from "semantic-ui-react"
+import { Loader, Modal } from "semantic-ui-react"
 import { useOrder, useTable } from "../../hooks"
+import { ModalBasic } from "../../components/common" 
 import { HeaderPage } from "../../components/admin"
 import { ListOrder } from "../../components/admin"
 import { useParams } from "react-router-dom"
@@ -11,8 +12,11 @@ export const TableDetails = () => {
     const { id } = useParams()
     const { loading, orders, getOrderByTable } = useOrder()
     const { table, getTable } = useTable()
+    const [showModal, setShowModal] = useState()
 
-    console.log(table)
+    const openCloseModal = () => {
+        setShowModal((prev) => !prev)
+    }
 
     const onReloadOrders = () => {
         setReloadOrders((prev) => !prev)
@@ -29,7 +33,7 @@ export const TableDetails = () => {
     
     return (
         <>
-            <HeaderPage title={`Mesa ${ table?.number || "" }`} />
+            <HeaderPage title={`Mesa ${ table?.number || "" }`} btnTitle="Añadir pedido" btnClick={ openCloseModal } />
                 {
                     loading ? (
                         <Loader active inline="centered">
@@ -39,6 +43,9 @@ export const TableDetails = () => {
                         <ListOrder orders={ orders } onReloadOrders={ onReloadOrders } />
                     )
                 }
+            <ModalBasic show={ showModal } onClose={ openCloseModal } title="Crear pedido">
+                <h1>Contenido del modal</h1>
+            </ModalBasic>
         </>
     )
 
