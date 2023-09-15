@@ -3,12 +3,20 @@ import { Button, Image } from 'semantic-ui-react'
 import { OrderStatus } from "../../../../utils/constants"
 import moment from "moment"
 import "moment/dist/locale/es"
+import { useOrder } from '../../../../hooks'
 import classNames from 'classnames'
 import "./OrderItem.scss"
 
 export const OrderItem = ({ order }) => {
 
     const { title, image } = order.product_data;
+    const { checkDeliveredOrder } = useOrder();
+
+    const onCheckDeliveredOrder = async() => {
+
+        await checkDeliveredOrder(order.id)
+
+    }
 
     return (
         <div className={classNames("order-item-admin", {
@@ -33,7 +41,7 @@ export const OrderItem = ({ order }) => {
             </div>
             {
                 order.status === OrderStatus.PENDIENTE ? (
-                    <Button primary onClick={() => console.log("Marcar como entregado")}>
+                    <Button primary onClick={ onCheckDeliveredOrder }>
                         Marcar como entregado
                     </Button>
                 ) : (
