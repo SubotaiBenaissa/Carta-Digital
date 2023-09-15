@@ -27,7 +27,7 @@ export async function getTableAPI(id) {
 
     try {
 
-        const url = `${BASE_PATH}/api/tables/${id}/`;
+        const url = `${ BASE_PATH }/api/mesas/${id}/`;
         const response = await fetch(url);
         const result = await response.json()
         return result
