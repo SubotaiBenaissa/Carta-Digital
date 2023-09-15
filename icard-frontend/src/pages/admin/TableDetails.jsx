@@ -11,11 +11,8 @@ export const TableDetails = () => {
     const { loading, orders, getOrderByTable } = useOrder()
 
     useEffect(() => {
-        getOrderByTable(id)
+        getOrderByTable(id, "", "ordering=-status,created_at")
     }, [])
-
-    console.log(orders)
-    console.log(loading)
     
     return (
         <>

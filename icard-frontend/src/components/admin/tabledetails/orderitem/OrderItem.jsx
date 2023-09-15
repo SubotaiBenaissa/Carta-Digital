@@ -1,5 +1,7 @@
 import React from 'react'
 import { Button, Image } from 'semantic-ui-react'
+import moment from "moment"
+import "moment/dist/locale/es"
 import classNames from 'classnames'
 import "./OrderItem.scss"
 
@@ -12,9 +14,17 @@ export const OrderItem = ({ order }) => {
             [order.status.toLowerCase()]: true
         })}>
             <div className="order-item-admin__time">
-                {
-                    order.created_at
-                }
+                <span>
+                    {
+                        moment(order.created_at).format("HH:mm")
+                    }
+                </span>
+                { " - " }
+                <span>
+                    {
+                        moment(order.created_at).startOf('seconds').fromNow()
+                    }
+                </span>
             </div>
             <div className="order-item-admin__product">
                 <Image src={ image } />
