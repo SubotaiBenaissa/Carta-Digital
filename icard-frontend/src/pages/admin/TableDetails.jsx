@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Loader } from "semantic-ui-react"
 import { useOrder } from "../../hooks"
 import { HeaderPage } from "../../components/admin"
@@ -7,12 +7,17 @@ import { useParams } from "react-router-dom"
 
 export const TableDetails = () => {
 
+    const [reloadOrders, setReloadOrders] = useState(false)
     const { id } = useParams()
     const { loading, orders, getOrderByTable } = useOrder()
 
+    const onReloadOrders = () => {
+        setReloadOrders((prev) => !prev)
+    }
+
     useEffect(() => {
         getOrderByTable(id, "", "ordering=-status,created_at")
-    }, [])
+    }, [reloadOrders])
     
     return (
         <>
@@ -23,7 +28,7 @@ export const TableDetails = () => {
                             Cargando...
                         </Loader>
                     ) : (
-                        <ListOrder orders={ orders } />
+                        <ListOrder orders={ orders } onReloadOrders={ onReloadOrders } />
                     )
                 }
         </>

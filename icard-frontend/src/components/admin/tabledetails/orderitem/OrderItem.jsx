@@ -7,7 +7,7 @@ import { useOrder } from '../../../../hooks'
 import classNames from 'classnames'
 import "./OrderItem.scss"
 
-export const OrderItem = ({ order }) => {
+export const OrderItem = ({ order, onReloadOrders }) => {
 
     const { title, image } = order.product_data;
     const { checkDeliveredOrder } = useOrder();
@@ -15,6 +15,7 @@ export const OrderItem = ({ order }) => {
     const onCheckDeliveredOrder = async() => {
 
         await checkDeliveredOrder(order.id)
+        onReloadOrders()
 
     }
 
