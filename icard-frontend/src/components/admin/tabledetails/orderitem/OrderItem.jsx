@@ -1,5 +1,6 @@
 import React from 'react'
 import { Button, Image } from 'semantic-ui-react'
+import { OrderStatus } from "../../../../utils/constants"
 import moment from "moment"
 import "moment/dist/locale/es"
 import classNames from 'classnames'
@@ -30,6 +31,15 @@ export const OrderItem = ({ order }) => {
                 <Image src={ image } />
                 <p>{ title }</p>
             </div>
+            {
+                order.status === OrderStatus.PENDIENTE ? (
+                    <Button primary onClick={() => console.log("Marcar como entregado")}>
+                        Marcar como entregado
+                    </Button>
+                ) : (
+                    <span>Entregado</span>
+                )
+            }
         </div>
     )
 
