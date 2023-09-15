@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Loader, Modal } from "semantic-ui-react"
 import { useOrder, useTable } from "../../hooks"
 import { ModalBasic } from "../../components/common" 
-import { HeaderPage } from "../../components/admin"
+import { HeaderPage, AddOrderForm } from "../../components/admin"
 import { ListOrder } from "../../components/admin"
 import { useParams } from "react-router-dom"
 
@@ -44,7 +44,7 @@ export const TableDetails = () => {
                     )
                 }
             <ModalBasic show={ showModal } onClose={ openCloseModal } title="Crear pedido">
-                <h1>Contenido del modal</h1>
+                <AddOrderForm idTable={ id } openCloseModal={ openCloseModal } />
             </ModalBasic>
         </>
     )
