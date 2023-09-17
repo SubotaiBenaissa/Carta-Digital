@@ -17,6 +17,23 @@ export async function getProductsAPI() {
 
 }
 
+export async function getProductByIdAPI(id) {
+
+    try {
+
+        const url = `${BASE_PATH}/api/products/${id}/`;
+        const response = await fetch(url);
+        const result = await response.json();
+        return result;
+        
+    } catch (error) {
+
+        throw error
+    
+    }
+
+}
+
 export async function addProductAPI( data, token ) {
 
     try {
