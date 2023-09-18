@@ -36,11 +36,9 @@ function formatDropdownData(data) {
 
 export const AddOrderForm = ({ id, openCloseModal }) => {
 
-    const { products, getProducts } = useProduct()
+    const { products, getProducts, getProductByID } = useProduct()
     const [productsData, setProductsData] = useState()
     const [productFormat, setProductFormat] = useState([])
-
-    console.log(productFormat)
 
     useEffect(() => {
         getProducts()
@@ -49,10 +47,6 @@ export const AddOrderForm = ({ id, openCloseModal }) => {
     useEffect(() => {
         setProductFormat(formatDropdownData(products))
     }, [products])
-
-    useEffect(() => {
-        addProductList()
-    }, [values])
 
     const { values, handleSubmit, setFieldValue } = useFormik({
         initialValues: initialValues(),
@@ -64,6 +58,10 @@ export const AddOrderForm = ({ id, openCloseModal }) => {
         }
     })
 
+    useEffect(() => {
+        addProductList()
+    }, [values])
+
     const addProductList = async() => {
 
         try {
@@ -71,8 +69,10 @@ export const AddOrderForm = ({ id, openCloseModal }) => {
             const productsID = values.products;
             const arrayTemp = []
             for await(const idProduct of productsID) {
-                console.log(idProduct)
+                const response = await getProductByID(idProduct)
+                arrayTemp.push(response)
             }
+            setProductsData(arrayTemp)
 
         } catch (error) {
 
@@ -94,7 +94,15 @@ export const AddOrderForm = ({ id, openCloseModal }) => {
             />
             <div className='add-order-form__list'>
                 {
-                    // Productos seleccionados
+                    map(productsData, (product, index) => (
+                        <div className="add-order form__list-product" key={index}>
+                            <div>
+                                <Image src={ product.image } avatar size="tiny"/>
+                                <span>{ product.title }</span>
+                            </div>
+                            <Button type="button" basic color="red">Eliminar producto</Button>
+                        </div>
+                    ))
                 }
             </div>
             <Button type='submit' primary fluid>Añadir productos</Button>

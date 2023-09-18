@@ -98,7 +98,7 @@ export const useProduct = () => {
         error,
         products,
         getProducts,
-        getProductByIdAPI,
+        getProductByID,
         addProduct,
         updateProduct,
         deleteProduct
