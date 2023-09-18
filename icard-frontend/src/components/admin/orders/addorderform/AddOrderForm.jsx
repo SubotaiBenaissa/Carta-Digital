@@ -92,10 +92,10 @@ export const AddOrderForm = ({ id, openCloseModal }) => {
                 options={ productFormat } 
                 onChange={ (_, data) => setFieldValue("products", [...values.products, data.value]) }
             />
-            <div className='add-order-form__list'>
+            <div className="add-order-form__list">
                 {
                     map(productsData, (product, index) => (
-                        <div className="add-order form__list-product" key={index}>
+                        <div className="add-order-form__list-product" key={index}>
                             <div>
                                 <Image src={ product.image } avatar size="tiny"/>
                                 <span>{ product.title }</span>
