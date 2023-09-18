@@ -34,7 +34,7 @@ function formatDropdownData(data) {
 
 }
 
-export const AddOrderForm = ({ idTable, openCloseModal }) => {
+export const AddOrderForm = ({ idTable, openCloseModal, onReloadOrders }) => {
 
     const { products, getProducts, getProductByID } = useProduct();
     const { addOrderToTable } = useOrder();
@@ -57,6 +57,7 @@ export const AddOrderForm = ({ idTable, openCloseModal }) => {
             for await(const idProduct of formValue.products) {
                 await addOrderToTable(idTable, idProduct)
             }
+            onReloadOrders()
             openCloseModal()
         }
     })
