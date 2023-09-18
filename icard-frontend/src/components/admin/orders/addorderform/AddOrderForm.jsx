@@ -82,6 +82,14 @@ export const AddOrderForm = ({ id, openCloseModal }) => {
 
     }
 
+    const removeProductList = (index) => {
+
+        const idProducts = [...values.products];
+        idProducts.splice(index, 1);
+        setFieldValue("products", idProducts)
+
+    }
+
     return (
         <Form className="add-order-form" onSubmit={ handleSubmit }>
             <Dropdown 
@@ -90,6 +98,7 @@ export const AddOrderForm = ({ id, openCloseModal }) => {
                 selection 
                 search 
                 options={ productFormat } 
+                value={ null }
                 onChange={ (_, data) => setFieldValue("products", [...values.products, data.value]) }
             />
             <div className="add-order-form__list">
@@ -100,7 +109,14 @@ export const AddOrderForm = ({ id, openCloseModal }) => {
                                 <Image src={ product.image } avatar size="tiny"/>
                                 <span>{ product.title }</span>
                             </div>
-                            <Button type="button" basic color="red">Eliminar producto</Button>
+                            <Button 
+                                type="button" 
+                                basic 
+                                color="red" 
+                                onClick={ () => removeProductList() }
+                            > 
+                            Eliminar producto 
+                            </Button>
                         </div>
                     ))
                 }
