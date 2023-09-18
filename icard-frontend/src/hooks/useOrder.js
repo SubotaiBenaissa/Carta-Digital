@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { getOrderByTableAPI, checkDeliveredOrderAPI } from "../api/orders"
+import { getOrderByTableAPI, checkDeliveredOrderAPI, addOrderToTableAPI } from "../api/orders"
 
 export function useOrder() {
 
@@ -39,11 +39,26 @@ export function useOrder() {
 
     }
 
+    const addOrderToTable = async(idTable, idProduct) => {
+
+        try {
+
+            await addOrderToTableAPI(idTable, idProduct)
+            
+        } catch (error) {
+            
+            setErrors(error)
+
+        }
+
+    }
+
     return { 
         loading,
         errors,
         orders,
         getOrderByTable,
+        addOrderToTable,
         checkDeliveredOrder
     }
 

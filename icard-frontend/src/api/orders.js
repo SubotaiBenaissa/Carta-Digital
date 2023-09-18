@@ -47,3 +47,30 @@ export async function checkDeliveredOrderAPI(id) {
     }
 
 }
+
+export async function addOrderToTableAPI(idTable, idProduct) {
+
+    try {
+
+        const url = `${ BASE_PATH }/api/pedidos/`;
+        const params = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                status: OrderStatus.PENDIENTE,
+                table: idTable,
+                product: idProduct
+            })
+        }
+
+        await fetch(url, params)
+        
+    } catch (error) {
+
+        throw error;
+    
+    }
+
+}
