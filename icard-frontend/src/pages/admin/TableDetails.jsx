@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Loader, Modal } from "semantic-ui-react"
+import { Loader } from "semantic-ui-react"
 import { useOrder, useTable } from "../../hooks"
 import { ModalBasic } from "../../components/common" 
 import { HeaderPage, AddOrderForm } from "../../components/admin"
