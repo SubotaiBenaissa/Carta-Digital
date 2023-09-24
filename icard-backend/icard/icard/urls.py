@@ -24,6 +24,7 @@ from Categorias.router import router_categoria
 from Productos.router import router_product
 from Mesas.router import router_mesa
 from Pedidos.router import router_pedidos
+from Pagos.router import router_pagos
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -43,7 +44,8 @@ urlpatterns = [
     path('api/', include(router_categoria.urls)),
     path('api/', include(router_product.urls)),
     path('api/', include(router_mesa.urls)),
-    path('api/', include(router_pedidos.urls))
+    path('api/', include(router_pedidos.urls)),
+    path('api/', include(router_pagos.urls))
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
