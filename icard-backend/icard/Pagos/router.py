@@ -3,5 +3,5 @@ from .views import PagoModelApiViewSet
 
 router_pagos = DefaultRouter()
 router_pagos.register(
-    prefix='Pagos', basename='Pagos', viewset=PagoModelApiViewSet
+    prefix='pagos', basename='pagos', viewset=PagoModelApiViewSet
 )

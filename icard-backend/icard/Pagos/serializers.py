@@ -6,4 +6,4 @@ class PagoSerializer(ModelSerializer):
     class Meta: 
         
         model = Pago
-        fields = ['id', 'mesa', 'totalPago', 'tipoPago', 'estadoPago', 'createdAt']
+        fields = ['id', 'mesa', 'totalPago', 'tipoPago', 'estadoPago', 'created_at']
