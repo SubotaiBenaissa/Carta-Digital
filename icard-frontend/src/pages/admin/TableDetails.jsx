@@ -30,10 +30,26 @@ export const TableDetails = () => {
     useEffect(() => {
         getOrderByTable(id, "", "ordering=-status,created_at")
     }, [id, reloadOrders])
+
+    const onCreatePayment = () => {
+
+        const result = window.confirm('¿Está seguro de generar la cuenta?')
+
+        if(result) {
+            console.log("Generar cuenta")
+        }
+
+    }
     
     return (
         <>
-            <HeaderPage title={`Mesa ${ table?.number || "" }`} btnTitle="Añadir pedido" btnClick={ openCloseModal } />
+            <HeaderPage 
+                title={`Mesa ${ table?.number || "" }`} 
+                btnTitle="Añadir pedido" 
+                btnClick={ openCloseModal } 
+                btnTitleTwo="Generar cuenta" 
+                btnClickTwo={ onCreatePayment }
+            />
                 {
                     loading ? (
                         <Loader active inline="centered">
