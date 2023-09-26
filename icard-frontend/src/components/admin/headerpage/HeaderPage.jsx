@@ -2,18 +2,26 @@ import React from 'react'
 import { Button } from 'semantic-ui-react'
 import './HeaderPage.scss'
 
-export const HeaderPage = ({ title, btnTitle, btnClick }) => {
+export const HeaderPage = ({ title, btnTitle, btnClick, btnTitleTwo, btnClickTwo }) => {
 
     return (
         
         <div className="header-page-admin">
             <h2>{ title }</h2>
             <div>
-                { btnTitle && (
-                    <Button positive onClick={ btnClick }>
-                        { btnTitle }
-                    </Button>
+                { 
+                    btnTitle && (
+                        <Button positive onClick={ btnClick }>
+                            { btnTitle }
+                        </Button>
                 )}
+                {
+                    btnTitleTwo && (
+                        <Button negative onClick={ btnClickTwo }>
+                            { btnTitleTwo }
+                        </Button>
+                    )
+                }
             </div>
         </div>
 
