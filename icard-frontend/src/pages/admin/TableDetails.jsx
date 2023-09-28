@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Loader } from "semantic-ui-react"
 import { useOrder, useTable } from "../../hooks"
 import { ModalBasic } from "../../components/common" 
+import { forEach } from "lodash"
 import { HeaderPage, AddOrderForm } from "../../components/admin"
 import { ListOrder } from "../../components/admin"
 import { useParams } from "react-router-dom"
@@ -36,7 +37,25 @@ export const TableDetails = () => {
         const result = window.confirm('¿Está seguro de generar la cuenta?')
 
         if(result) {
-            console.log("Generar cuenta")
+
+            let totalPayment = 0;
+            forEach(orders, (order) => {
+                totalPayment += Number(order.product_data.price)
+            })
+
+            const resultPayment = window.confirm(
+                "Pago con tarjeta pulsar aceptar, con efectivo pulsar cancelar"
+            )
+
+            const paymentData = {
+                table: id,
+                totalPayment: totalPayment,
+                paymentType: resultPayment ? "TARJETA" : "EFECTIVO",
+                statusPayment: "PENDIENTE"
+            }
+
+            console.log(paymentData)
+
         }
 
     }
