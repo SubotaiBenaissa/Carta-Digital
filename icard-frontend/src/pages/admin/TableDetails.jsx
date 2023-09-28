@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Loader } from "semantic-ui-react"
-import { useOrder, useTable } from "../../hooks"
+import { useOrder, useTable, usePayment } from "../../hooks"
 import { ModalBasic } from "../../components/common" 
 import { forEach } from "lodash"
 import { HeaderPage, AddOrderForm } from "../../components/admin"
@@ -14,6 +14,7 @@ export const TableDetails = () => {
     const { loading, orders, getOrderByTable } = useOrder()
     const { table, getTable } = useTable()
     const [showModal, setShowModal] = useState()
+    const { createPayment } = usePayment();
 
     const openCloseModal = () => {
         setShowModal((prev) => !prev)
@@ -32,7 +33,7 @@ export const TableDetails = () => {
         getOrderByTable(id, "", "ordering=-status,created_at")
     }, [id, reloadOrders])
 
-    const onCreatePayment = () => {
+    const onCreatePayment = async() => {
 
         const result = window.confirm('¿Está seguro de generar la cuenta?')
 
@@ -48,13 +49,14 @@ export const TableDetails = () => {
             )
 
             const paymentData = {
-                table: id,
-                totalPayment: totalPayment,
-                paymentType: resultPayment ? "TARJETA" : "EFECTIVO",
-                statusPayment: "PENDIENTE"
+                mesa: id,
+                totalPago: totalPayment,
+                tipoPago: resultPayment ? "TARJETA" : "EFECTIVO",
+                estadoPago: "PENDIENTE"
             }
 
-            console.log(paymentData)
+            const payment = await createPayment(paymentData)
+            console.log(payment)
 
         }
 

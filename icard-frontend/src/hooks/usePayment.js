@@ -21,7 +21,8 @@ export function usePayment() {
 
     return {
 
-
+        error,
+        createPayment
 
     }
 
