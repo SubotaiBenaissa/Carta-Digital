@@ -11,4 +11,4 @@ class PedidoSerializer(ModelSerializer):
     class Meta: 
         
         model = Pedido
-        fields = ['id', 'table', 'table_data', 'status', 'product', 'product_data', 'close', 'created_at']
+        fields = ['id', 'table', 'table_data', 'status', 'product', 'payment', 'product_data', 'close', 'created_at']

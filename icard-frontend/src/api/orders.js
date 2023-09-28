@@ -79,7 +79,7 @@ export async function addPaymentToOrderAPI(idOrder, idPayment) {
 
     try {
 
-        const url = `${BASE_PATH}/api/pedidos/${idOrder}`;
+        const url = `${BASE_PATH}/api/pedidos/${idOrder}/`;
         const params = {
             method: "PATCH",
             headers: {

@@ -11,7 +11,7 @@ export const TableDetails = () => {
 
     const [reloadOrders, setReloadOrders] = useState(false)
     const { id } = useParams()
-    const { loading, orders, getOrderByTable } = useOrder()
+    const { loading, orders, getOrderByTable, addPaymentToOrder } = useOrder()
     const { table, getTable } = useTable()
     const [showModal, setShowModal] = useState()
     const { createPayment } = usePayment();
@@ -56,7 +56,12 @@ export const TableDetails = () => {
             }
 
             const payment = await createPayment(paymentData)
-            console.log(payment)
+            
+            for await (const order of orders) {
+                await addPaymentToOrder(order.id, payment.id)
+            }
+
+            onReloadOrders()
 
         }
 
