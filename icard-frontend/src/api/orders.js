@@ -74,3 +74,27 @@ export async function addOrderToTableAPI(idTable, idProduct) {
     }
 
 }
+
+export async function addPaymentToOrderAPI(idOrder, idPayment) {
+
+    try {
+
+        const url = `${BASE_PATH}/api/pedidos/${idOrder}`;
+        const params = {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                payment: idPayment
+            })
+        }
+        await fetch(url, params)
+        
+    } catch (error) {
+
+        throw error
+    
+    }
+
+}
