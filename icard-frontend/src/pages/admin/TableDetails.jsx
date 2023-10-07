@@ -82,7 +82,7 @@ export const TableDetails = () => {
         <>
             <HeaderPage 
                 title={`Mesa ${ table?.number || "" }`} 
-                btnTitle="Añadir pedido" 
+                btnTitle={ paymentData ? "Ver cuenta" : "Añadir pedido" } 
                 btnClick={ openCloseModal } 
                 btnTitleTwo={ !paymentData ? "Generar cuenta": null } 
                 btnClickTwo={ onCreatePayment }
@@ -97,7 +97,12 @@ export const TableDetails = () => {
                     )
                 }
             <ModalBasic show={ showModal } onClose={ openCloseModal } title="Crear pedido">
-                <AddOrderForm idTable={ id } openCloseModal={ openCloseModal } onReloadOrders={ onReloadOrders } />
+                {
+                    paymentData ? (
+                        <h2>Detalles de cuenta</h2>
+                    ): 
+                    <AddOrderForm idTable={ id } openCloseModal={ openCloseModal } onReloadOrders={ onReloadOrders } />
+                }
             </ModalBasic>
         </>
     )
