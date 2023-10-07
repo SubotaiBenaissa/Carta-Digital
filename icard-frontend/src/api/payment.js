@@ -29,7 +29,7 @@ export async function getPaymentByTableAPI(id) {
 
     try {
         
-        const statusFilter = `statusPayment=${PaymentStatus.PENDIENTE}`
+        const statusFilter = `status=${PaymentStatus.PENDIENTE}`
         const tableFilter = `table=${ id }`
 
         const url = `${BASE_PATH}/api/pedidos/?${tableFilter}&${statusFilter}`

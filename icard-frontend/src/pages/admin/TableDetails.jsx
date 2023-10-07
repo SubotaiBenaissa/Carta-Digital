@@ -2,18 +2,20 @@ import React, { useState, useEffect } from 'react'
 import { Loader } from "semantic-ui-react"
 import { useOrder, useTable, usePayment } from "../../hooks"
 import { ModalBasic } from "../../components/common" 
-import { forEach } from "lodash"
+import { forEach, size } from "lodash"
 import { HeaderPage, AddOrderForm } from "../../components/admin"
 import { ListOrder } from "../../components/admin"
 import { useParams } from "react-router-dom"
 
 export const TableDetails = () => {
 
+    const [showModal, setShowModal] = useState()
     const [reloadOrders, setReloadOrders] = useState(false)
+    const [ paymentData, setPaymentData ] = useState(null)
+
     const { id } = useParams()
     const { loading, orders, getOrderByTable, addPaymentToOrder } = useOrder()
     const { table, getTable } = useTable()
-    const [showModal, setShowModal] = useState()
     const { createPayment, getPaymentByTable } = usePayment();
 
     const openCloseModal = () => {
@@ -26,7 +28,8 @@ export const TableDetails = () => {
 
     const getPaymentTable = async() => {       
         const response = await getPaymentByTable(id)
-        console.log(response)
+        console.log(response[0])
+        if ( size(response) > 0 ) setPaymentData(response[0])
     }
 
     useEffect(() => {
@@ -34,12 +37,12 @@ export const TableDetails = () => {
     }, [ id ])
     
     useEffect(() => {
-        getPaymentTable()
-    }, [])
-
-    useEffect(() => {
         getOrderByTable(id, "", "ordering=-status,created_at")
     }, [id, reloadOrders])
+
+    useEffect(() => {
+        getPaymentTable()
+    }, [ reloadOrders ])
 
     const onCreatePayment = async() => {
 
@@ -81,7 +84,7 @@ export const TableDetails = () => {
                 title={`Mesa ${ table?.number || "" }`} 
                 btnTitle="Añadir pedido" 
                 btnClick={ openCloseModal } 
-                btnTitleTwo="Generar cuenta" 
+                btnTitleTwo={ !paymentData ? "Generar cuenta": null } 
                 btnClickTwo={ onCreatePayment }
             />
                 {
