@@ -4,3 +4,7 @@ export const OrderStatus = {
     PENDIENTE: "PENDIENTE",
     ENTREGADO: "ENTREGADO"
 }
+export const PaymentStatus = {
+    PENDIENTE: "PENDIENTE",
+    PAGADO: "PAGADO"
+}
