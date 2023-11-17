@@ -18,6 +18,23 @@ export const TableDetails = () => {
     const { table, getTable } = useTable()
     const { createPayment, getPaymentByTable } = usePayment();
 
+    useEffect(() => {
+        getOrderByTable(id, "", "ordering=-status,created_at")
+    }, [id, reloadOrders])
+    
+    useEffect(() => {
+        getTable(id)
+    }, [ id ])
+
+    const getPaymentTable = async() => {       
+        const response = await getPaymentByTable(id)
+        if ( size(response) > 0 ) setPaymentData(response[0])
+    }
+
+    useEffect(() => {
+        getPaymentTable()
+    }, [ reloadOrders ])
+   
     const openCloseModal = () => {
         setShowModal((prev) => !prev)
     }
@@ -25,24 +42,6 @@ export const TableDetails = () => {
     const onReloadOrders = () => {
         setReloadOrders((prev) => !prev)
     }
-
-    const getPaymentTable = async() => {       
-        const response = await getPaymentByTable(id)
-        console.log(response[0])
-        if ( size(response) > 0 ) setPaymentData(response[0])
-    }
-
-    useEffect(() => {
-        getTable(id)
-    }, [ id ])
-    
-    useEffect(() => {
-        getOrderByTable(id, "", "ordering=-status,created_at")
-    }, [id, reloadOrders])
-
-    useEffect(() => {
-        getPaymentTable()
-    }, [ reloadOrders ])
 
     const onCreatePayment = async() => {
 

@@ -32,7 +32,7 @@ export async function getPaymentByTableAPI(id) {
         const statusFilter = `status=${PaymentStatus.PENDIENTE}`
         const tableFilter = `table=${ id }`
 
-        const url = `${BASE_PATH}/api/pedidos/?${tableFilter}&${statusFilter}`
+        const url = `${BASE_PATH}/api/pagos/?${tableFilter}&${statusFilter}`
         const params = {
             headers: {
                 "Content-Type": "application/json"
