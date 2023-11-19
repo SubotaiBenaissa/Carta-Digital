@@ -17,7 +17,6 @@ export const AuthProvider = ({ children }) => {
             if(token) {
                 const me = await getMe(token)
                 setAuth({ token, me })
-                console.log(token, me)
             } else {
                 setAuth(null);
             }
@@ -38,7 +37,6 @@ export const AuthProvider = ({ children }) => {
         setToken(token)
         const Me = await getMe(token); 
         setAuth({ token, Me });
-        console.log(Me)
         // console.log('Context login', token);
     }
 

@@ -6,7 +6,6 @@ import './AdminLayout.scss'
 
 export const AdminLayout = ({ children }) => {
 
-    console.log(useAuth());
     const { auth } = useAuth();
 
     if(!auth) return <LoginAdmin />

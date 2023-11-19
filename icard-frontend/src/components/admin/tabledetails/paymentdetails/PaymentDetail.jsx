@@ -1,8 +1,11 @@
 import React from 'react'
 import { Table, Button, Icon } from "semantic-ui-react"
+import { usePayment } from '../../../../hooks'
 import "./PaymentDetail.scss"
 
 export const PaymentDetail = ({ payment, orders, onClose, onReloadOrders }) => {
+
+    const { closePayment } = usePayment();
 
     const getIconPayment = ( key ) => {
 
@@ -12,7 +15,15 @@ export const PaymentDetail = ({ payment, orders, onClose, onReloadOrders }) => {
 
     }
 
-    console.log(payment)
+    const onCloseTable = async() => {
+
+        const result = window.confirm("¿Desea cerrar la mesa?")
+        if(result) {
+            console.log(payment.id)
+            await closePayment(payment.id)
+        }
+
+    }
 
     return (
         <div className="payment-detail">
@@ -34,7 +45,7 @@ export const PaymentDetail = ({ payment, orders, onClose, onReloadOrders }) => {
                     </Table.Row>
                 </Table.Body>
             </Table>
-            <Button primary fluid onClick={ () => console.log("Cerrar mesa") } >
+            <Button primary fluid onClick={ onCloseTable } >
                 Marcar como pagado y cerrar mesa
             </Button>
         </div>

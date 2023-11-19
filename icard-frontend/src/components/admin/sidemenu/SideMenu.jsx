@@ -7,7 +7,6 @@ import "./SideMenu.scss"
 const MenuLeft = ({ pathname }) => {
 
     const { auth } = useAuth();
-    console.log(auth)
 
     return (
         <Menu fixed="left" borderless className="side" vertical>
@@ -40,7 +39,6 @@ const MenuLeft = ({ pathname }) => {
 
 export const SideMenu = ({ children }) => {
 
-    console.log(useLocation())
     const { pathname } = useLocation()
 
     return (

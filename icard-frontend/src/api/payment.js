@@ -29,8 +29,8 @@ export async function getPaymentByTableAPI(id) {
 
     try {
         
-        const statusFilter = `status=${PaymentStatus.PENDIENTE}`
-        const tableFilter = `table=${ id }`
+        const statusFilter = `estadoPago=${PaymentStatus.PENDIENTE}`
+        const tableFilter = `mesa=${ id }`
 
         const url = `${BASE_PATH}/api/pagos/?${tableFilter}&${statusFilter}`
         const params = {
@@ -49,7 +49,7 @@ export async function getPaymentByTableAPI(id) {
 
 }
 
-export async function closePaymentAPI(key) {
+export async function closePaymentAPI(idPayment) {
 
     try {
         
@@ -63,7 +63,7 @@ export async function closePaymentAPI(key) {
                 estadoPago: PaymentStatus.PAGADO
             })
         }
-        
+
         await fetch(url, params)
 
     } catch (error) {
