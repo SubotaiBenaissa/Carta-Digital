@@ -49,7 +49,7 @@ export const TableList = ({ tables }) => {
             </div>
             {
                 map(tables, (table) => (
-                    <TableItem key={ table.number } table={ table } reload={ onReload }/>
+                    <TableItem key={ table.number } table={ table } reload={ reload }/>
                 ))
             }
         </div>

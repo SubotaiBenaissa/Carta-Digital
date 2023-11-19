@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { size } from 'lodash'
 import classNames from "classnames"
 import { Link } from "react-router-dom"
-import { Label, Button, Icon, Checkbox } from 'semantic-ui-react'
+import { Label } from 'semantic-ui-react'
 import { getOrderByTableAPI } from '../../../../api/orders'
 import { OrderStatus } from '../../../../utils/constants'
 import tablesvg from '../../../../assets/table.svg'

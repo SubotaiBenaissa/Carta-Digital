@@ -117,7 +117,7 @@ export const AddOrderForm = ({ idTable, openCloseModal, onReloadOrders }) => {
                                 type="button" 
                                 basic 
                                 color="red" 
-                                onClick={ () => removeProductList() }
+                                onClick={ () => removeProductList(index) }
                             > 
                             Eliminar producto 
                             </Button>
