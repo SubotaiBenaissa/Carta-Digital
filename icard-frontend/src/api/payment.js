@@ -48,3 +48,28 @@ export async function getPaymentByTableAPI(id) {
     }
 
 }
+
+export async function closePaymentAPI(key) {
+
+    try {
+        
+        const url = `${BASE_PATH}/api/pagos/${idPayment}/`;
+        const params = {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                estadoPago: PaymentStatus.PAGADO
+            })
+        }
+        
+        await fetch(url, params)
+
+    } catch (error) {
+
+        throw error
+    
+    }
+
+}

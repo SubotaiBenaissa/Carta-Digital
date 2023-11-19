@@ -20,7 +20,7 @@ export const PaymentDetail = ({ payment, orders, onClose, onReloadOrders }) => {
                 <Table.Body>
                     <Table.Row>
                         <Table.Cell>Mesa: </Table.Cell>
-                        <Table.Cell>{ payment.mesa }</Table.Cell>
+                        <Table.Cell>{ payment.datos_mesa.number }</Table.Cell>
                     </Table.Row>
                     <Table.Row>
                         <Table.Cell>Total: </Table.Cell>
