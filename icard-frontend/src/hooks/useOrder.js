@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { getOrderByTableAPI, checkDeliveredOrderAPI, addOrderToTableAPI, addPaymentToOrderAPI } from "../api/orders"
+import { getOrderByTableAPI, checkDeliveredOrderAPI, addOrderToTableAPI, addPaymentToOrderAPI, closeOrderAPI } from "../api/orders"
 
 export function useOrder() {
 
@@ -66,6 +66,8 @@ export function useOrder() {
         }
 
     }
+
+
 
     return { 
         loading,

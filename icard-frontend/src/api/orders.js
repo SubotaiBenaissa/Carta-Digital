@@ -89,12 +89,38 @@ export async function addPaymentToOrderAPI(idOrder, idPayment) {
                 payment: idPayment
             })
         }
+
         await fetch(url, params)
         
     } catch (error) {
 
         throw error
     
+    }
+
+}
+
+export async function closeOrderAPI(idOrder) {
+
+    try {
+               
+        const url = `${BASE_PATH}/api/pedidos/${idOrder}/`;
+        const params = {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                close: true
+            })
+        }
+
+        await fetch(url, params)
+
+    } catch (error) {
+        
+        throw error
+
     }
 
 }
