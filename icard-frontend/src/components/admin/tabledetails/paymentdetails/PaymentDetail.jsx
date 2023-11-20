@@ -1,11 +1,12 @@
 import React from 'react'
 import { Table, Button, Icon } from "semantic-ui-react"
-import { usePayment } from '../../../../hooks'
+import { usePayment, useOrder } from '../../../../hooks'
 import "./PaymentDetail.scss"
 
 export const PaymentDetail = ({ payment, orders, onClose, onReloadOrders }) => {
 
     const { closePayment } = usePayment();
+    const { closeOrder } = useOrder();
 
     const getIconPayment = ( key ) => {
 
@@ -19,9 +20,14 @@ export const PaymentDetail = ({ payment, orders, onClose, onReloadOrders }) => {
 
         const result = window.confirm("¿Desea cerrar la mesa?")
         if(result) {
-            console.log(payment.id)
             await closePayment(payment.id)
+            for await (const order of orders) {
+                await closeOrder(order.id)
+            }
         }
+
+        onReloadOrders()
+        onClose()
 
     }
 

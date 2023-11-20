@@ -67,7 +67,19 @@ export function useOrder() {
 
     }
 
+    const closeOrder = async(idOrder) => {
 
+        try {
+            
+            await closeOrderAPI(idOrder)
+
+        } catch (error) {
+            
+            setErrors(error)
+
+        }
+
+    }
 
     return { 
         loading,
@@ -76,7 +88,8 @@ export function useOrder() {
         getOrderByTable,
         addOrderToTable,
         checkDeliveredOrder,
-        addPaymentToOrder
+        addPaymentToOrder,
+        closeOrder
     }
 
 }
