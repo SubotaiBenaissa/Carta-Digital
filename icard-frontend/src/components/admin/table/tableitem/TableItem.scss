@@ -22,6 +22,9 @@
         &.pendiente {
             fill: #0094e3 !important;
         }
+        &.pending-payment {
+            fill: #008000
+        }
     }
 
     .ui.label {

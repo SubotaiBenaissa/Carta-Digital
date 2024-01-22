@@ -62,6 +62,7 @@ export const TableItem = ({ table, reload }) => {
             <img src={ tablesvg } className={classNames({
                 pendiente: size(orders) > 0,
                 busy: tableBusy,
+                "pending-payment": pendingPayment
             })} />
             <p>Mesa { table.number }</p>
         </Link>
