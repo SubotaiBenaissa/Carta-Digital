@@ -3,6 +3,7 @@ import { Table, Button, Icon } from "semantic-ui-react"
 import { map } from 'lodash';
 import moment from 'moment';
 import { ModalBasic } from '../../../common'
+import { PaymentDetails } from '../';
 import './TablePayments.scss'
 
 export const TablePayments = ({ payments }) => {
@@ -20,7 +21,9 @@ export const TablePayments = ({ payments }) => {
     const openCloseModal = () => setShowModal((prev) => !prev)
 
     const showDetails = ( payment ) => {
-        console.log(payment)
+        setTitleModal(`Pedidos de mesa ${payment.datos_mesa.number}`)
+        setContentModal(<PaymentDetails payment={ payment } />)
+        openCloseModal()
     }
 
     return (
