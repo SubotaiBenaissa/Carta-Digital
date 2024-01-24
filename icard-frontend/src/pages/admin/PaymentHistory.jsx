@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { HeaderPage } from "../../components/admin"
+import { HeaderPage, TablePayments } from "../../components/admin"
 import { usePayment } from "../../hooks"
 import { Loader } from 'semantic-ui-react';
 
