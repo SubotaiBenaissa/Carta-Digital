@@ -79,7 +79,7 @@ export async function getPaymentsAPI() {
     try {
         
         const paymentFilter = `estadoPago=${PaymentStatus.PAGADO}`
-        const orderingFilter = 'ordering=created_at'
+        const orderingFilter = 'ordering=-created_at'
         const url = `${BASE_PATH}/api/pagos/?${paymentFilter}&${orderingFilter}`
 
         const response = await fetch(url)
