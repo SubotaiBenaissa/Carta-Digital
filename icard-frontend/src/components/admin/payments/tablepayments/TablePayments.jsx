@@ -1,12 +1,44 @@
 import React from 'react'
+import { Table, Button, Icon } from "semantic-ui-react"
+import { map } from 'lodash';
+import moment from 'moment';
 import './TablePayments.scss'
 
-export const TablePayments = () => {
+export const TablePayments = ({ payments }) => {
+
+    console.log(payments)
+
+    const getIconPaymentName = (key) => {
+        if( key === "TARJETA" ) return "credit card outline";
+        if( key === "EFECTIVO" ) return "money bill alternate outline";
+        return null
+    }
 
     return (
-        <div>
-            <h2>Table Payments</h2>
-        </div>
+        <Table className="table-payments-admin">
+            <Table.Header>
+                <Table.Row>
+                    <Table.HeaderCell>ID</Table.HeaderCell>
+                    <Table.HeaderCell>Mesa</Table.HeaderCell>
+                    <Table.HeaderCell>Total</Table.HeaderCell>
+                    <Table.HeaderCell>Tipo de pago</Table.HeaderCell>
+                    <Table.HeaderCell>Fecha de pago</Table.HeaderCell>
+                    <Table.HeaderCell></Table.HeaderCell>
+                </Table.Row>
+            </Table.Header>
+
+            <Table.Body>
+                { map(payments, (payment, index) => (
+                    <Table.Row key={ index }>
+                        <Table.Cell>{ payment.id }</Table.Cell>
+                        <Table.Cell>{ payment.datos_mesa.number }</Table.Cell>
+                        <Table.Cell>$ { payment.totalPago }</Table.Cell>
+                        <Table.Cell><Icon name={ getIconPaymentName(payment.tipoPago) }/> { payment.tipoPago }</Table.Cell>
+                        <Table.Cell>{ payment.created_at }</Table.Cell>
+                    </Table.Row>
+                )) }
+            </Table.Body>
+        </Table>
     )
 
 }

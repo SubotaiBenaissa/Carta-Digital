@@ -22,7 +22,7 @@ export const PaymentHistory = () => {
                         Cargando...
                     </Loader>
                 ) : (
-                    <h2>Tabla de pagos</h2>
+                    <TablePayments payments={ payments } />
                 )
             }
         </>
