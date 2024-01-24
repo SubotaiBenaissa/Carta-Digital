@@ -73,3 +73,21 @@ export async function closePaymentAPI(idPayment) {
     }
 
 }
+
+export async function getPaymentsAPI() {
+
+    try {
+        
+        const paymentFilter = `estadoPago=${PaymentStatus.PAGADO}`
+        const orderingFilter = 'ordering=created_at'
+        const url = `${BASE_PATH}/api/pagos/?${paymentFilter}&${orderingFilter}`
+
+        const response = await fetch(url)
+        const result = await response.json()
+        return result
+
+    } catch (error) {
+        throw error
+    }
+
+}
