@@ -23,7 +23,7 @@ export const TablePayments = ({ payments }) => {
                     <Table.HeaderCell>Total</Table.HeaderCell>
                     <Table.HeaderCell>Tipo de pago</Table.HeaderCell>
                     <Table.HeaderCell>Fecha de pago</Table.HeaderCell>
-                    <Table.HeaderCell></Table.HeaderCell>
+                    <Table.HeaderCell textAlign='center'>Ver pago</Table.HeaderCell>
                 </Table.Row>
             </Table.Header>
 
@@ -34,7 +34,12 @@ export const TablePayments = ({ payments }) => {
                         <Table.Cell>{ payment.datos_mesa.number }</Table.Cell>
                         <Table.Cell>$ { payment.totalPago }</Table.Cell>
                         <Table.Cell><Icon name={ getIconPaymentName(payment.tipoPago) }/> { payment.tipoPago }</Table.Cell>
-                        <Table.Cell>{ payment.created_at }</Table.Cell>
+                        <Table.Cell>{ moment(payment.created_at).format("DD/MM/YYYY - HH:MM") }</Table.Cell>
+                        <Table.Cell textAlign='right'>
+                            <Button icon onClick={() => console.log("Ver detalles")}>
+                                <Icon name='eye' />
+                            </Button>
+                        </Table.Cell>
                     </Table.Row>
                 )) }
             </Table.Body>
