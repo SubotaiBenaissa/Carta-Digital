@@ -14,7 +14,7 @@ export const PaymentDetails = ({ payment }) => {
             const response = await getOrderByPayment(payment.id);
             setOrders(response)
         })()
-    })
+    }, [])
 
     return (
         <div className="payment-product-list">
@@ -23,7 +23,9 @@ export const PaymentDetails = ({ payment }) => {
                     <div className="payment-product-list__product" key={ order.id }>
                         <div>
                             <Image src={ order.product_data.image } avatar size="tiny" />
+                            <span>{ order.product_data.title }</span>
                         </div>
+                        <span>$ { order.product_data.price }</span>
                     </div>
                 ))
             }
