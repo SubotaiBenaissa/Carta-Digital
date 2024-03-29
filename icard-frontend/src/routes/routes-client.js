@@ -1,11 +1,11 @@
-import { ClientLayout } from "../layouts"
-import { Home } from "../pages"
+import { ClientLayout, BasicLayout } from "../layouts"
+import { SelectTable } from "../pages"
 
 const routesClient = [
     {
         path: "/",
-        layout: ClientLayout,
-        component: Home,
+        layout: BasicLayout,
+        component: SelectTable,
         exact: true
     },
 ]
