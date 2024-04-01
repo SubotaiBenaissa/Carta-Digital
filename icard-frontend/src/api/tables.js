@@ -40,6 +40,24 @@ export async function getTableAPI(id) {
 
 }
 
+export async function getTableByNumber( numberTable ) {
+
+    try {
+        
+        const tableFilter = `number=${ numberTable }`
+        const url = `${BASE_PATH}/api/table/${ tableFilter }`
+        const response = await fetch(url);
+        const result = await response.json()
+        return result
+
+    } catch (error) {
+        
+        throw error
+
+    }
+
+}
+
 export async function addTableAPI( data, token ) {
 
     try {

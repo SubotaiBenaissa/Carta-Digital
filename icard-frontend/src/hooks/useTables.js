@@ -98,6 +98,18 @@ export function useTable() {
 
     }
 
+    const existingTable = ( tableNumber ) => {
+
+        try {
+            
+            const response = await
+
+        } catch (error) {
+            
+        }
+
+    }
+
     return {
         loading,
         errors,
