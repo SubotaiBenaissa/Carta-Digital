@@ -1,13 +1,15 @@
 import { useState } from 'react'
 import './SelectTable.scss'
+import { useTable } from "../../../hooks"
 import { Form, Button } from "semantic-ui-react"
 
 export const SelectTable = () => {
 
     const [tableNum, setTableNum] = useState(null)
     const [error, setError] = useState(null)
+    const { existingTable } = useTable()
 
-    const onSubmit = () => {
+    const onSubmit = async() => {
 
         setError(null)
 
@@ -15,6 +17,8 @@ export const SelectTable = () => {
             setError("No se ha seleccionado ninguna mesa")
         } else {
             console.log("entrando xddd")
+            const exist = await existingTable(tableNum)
+            console.log(exist)
         }
         
     }

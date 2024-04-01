@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { getTablesAPI, addTableAPI, updateTableAPI, deleteTableAPI, getTableAPI } from '../api/tables'
+import { size } from 'lodash'
+import { getTablesAPI, addTableAPI, updateTableAPI, deleteTableAPI, getTableAPI, getTableByNumber } from '../api/tables'
 import { useAuth } from './useAuth'
 
 export function useTable() {
@@ -98,14 +99,17 @@ export function useTable() {
 
     }
 
-    const existingTable = ( tableNumber ) => {
+    const existingTable = async( tableNumber ) => {
 
         try {
             
-            const response = await
+            const response = await getTableByNumber( tableNumber )
+            if (size(response) === 0) return Error()
 
         } catch (error) {
             
+            setErrors(error)
+
         }
 
     }
@@ -119,7 +123,8 @@ export function useTable() {
         getTable,
         addTable,
         updateTable,
-        deleteTable
+        deleteTable,
+        existingTable
     }
 
 }
