@@ -45,7 +45,7 @@ export async function getTableByNumber( numberTable ) {
     try {
         
         const tableFilter = `number=${ numberTable }`
-        const url = `${BASE_PATH}/api/table/${ tableFilter }`
+        const url = `${BASE_PATH}/api/mesas/?${ tableFilter }`
         const response = await fetch(url);
         const result = await response.json()
         return result
