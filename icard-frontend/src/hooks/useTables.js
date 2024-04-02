@@ -105,6 +105,7 @@ export function useTable() {
             
             const response = await getTableByNumber( tableNumber )
             if (size(response) === 0) return Error()
+            return true
 
         } catch (error) {
             
