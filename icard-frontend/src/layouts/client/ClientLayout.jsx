@@ -26,6 +26,14 @@ export const ClientLayout = ({ children }) => {
     navigate("/")
   } 
 
+  const goToCart = () => {
+    navigate(`/client/${ tableNumber }/cart`)
+  }
+
+  const goToOrders = () => {
+    navigate(`/client/${tableNumber}/orders`)
+  }
+
   return (
 
     <div className='client-layout-bg'>
@@ -35,6 +43,17 @@ export const ClientLayout = ({ children }) => {
             <h1>iCard</h1>
           </Link>
           <span>Mesa { tableNumber }</span>
+          <div>
+            <Button icon onClick={ goToCart }>
+              <Icon name="shop" />
+            </Button>
+            <Button icon onClick={ goToCart }>
+              <Icon name="list" />
+            </Button>
+            <Button icon onClick={ closeTable }>
+              <Icon name="sign-out" />
+            </Button>
+          </div>
         </div>
         <div className="client-layout__content">
           { children }
