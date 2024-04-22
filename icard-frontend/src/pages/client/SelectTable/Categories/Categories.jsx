@@ -1,12 +1,22 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useCategory } from "../../../../hooks"
+import { ListCategories } from '../../../../components/client'
+
 
 export const Categories = () => {
+
+    const { loading, categories, getCategories } = useCategory()
+
+    useEffect(() => {
+        getCategories()
+    }, [])
+    
 
     return (
 
         <div>
             <h3>Categorias</h3>
-            <p>Lista de categorías</p>
+            { loading ? <p>Cargando</p> : <ListCategories categories={ categories }/> }
         </div>
 
     )
