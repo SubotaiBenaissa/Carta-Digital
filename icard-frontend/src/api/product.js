@@ -119,3 +119,23 @@ export async function deleteProductAPI( id, token ) {
     }
 
 }
+
+export async function getProductByCategoryAPI( idCategory ) {
+
+    try {
+
+        const categoryFilter = `category=${ idCategory }`
+        const url = `${BASE_PATH}/api/products/?${ categoryFilter }`
+        
+        const response = await fetch(url)
+        const result = await response.json()
+
+        return result
+        
+    } catch (error) {
+
+        throw error;
+        
+    }
+
+}
