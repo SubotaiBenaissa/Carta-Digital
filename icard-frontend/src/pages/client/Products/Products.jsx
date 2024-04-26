@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { useProduct } from "../../../hooks"
+import { ListProducts } from '../../../components/client'
 
 export const Products = () => {
 
@@ -16,7 +17,7 @@ export const Products = () => {
     return (
         <div>
             {
-                loading ? <p>Loading</p> : <p>Lista de productos</p>
+                loading ? <p>Loading</p> : <ListProducts products={ products } />
             }
             <Link to={`/client/${ tableNumber }`}>Volver a categorías</Link>
         </div>
