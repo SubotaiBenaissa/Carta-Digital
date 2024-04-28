@@ -3,10 +3,10 @@ import { Image, Button, Icon } from "semantic-ui-react"
 import { map } from "lodash"
 import "./ListProducts.scss"
 
-export const ListProducts = () => {
+export const ListProducts = ({ products }) => {
 
     return (
-        <div className="lost-product-client">
+        <div className="list-product-client">
             {
                 map(products, (product) => (
                     <div key={ product.id } className="list-products-client__product">
