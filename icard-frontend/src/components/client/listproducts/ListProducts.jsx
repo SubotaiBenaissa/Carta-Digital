@@ -1,12 +1,13 @@
 import React from 'react'
 import { Image, Button, Icon } from "semantic-ui-react"
-import { add, map } from "lodash"
+import { map } from "lodash"
+import { addProductCart } from '../../../api/cart'
 import "./ListProducts.scss"
 
 export const ListProducts = ({ products }) => {
 
     const addCart = ( product ) => {
-        console.log("producto: ", product.title)
+        addProductCart(product.id);
     }
 
     return (
