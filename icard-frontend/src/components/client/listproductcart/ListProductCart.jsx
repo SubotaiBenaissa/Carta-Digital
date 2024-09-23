@@ -5,12 +5,13 @@ import { removeProductCart } from "../../../api/cart"
 import "./ListProductCart.scss"
 import { useParams, useNavigate } from 'react-router-dom'
 
-export const ListProductCart = ({ products }) => {
+export const ListProductCart = ({ products, onReloadCart }) => {
 
     const removeProduct = ( index ) => {
 
         removeProductCart(index)
-        
+        onReloadCart()
+
     }
 
     return (

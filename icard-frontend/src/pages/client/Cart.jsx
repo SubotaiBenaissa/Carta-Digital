@@ -9,6 +9,7 @@ import { Button } from 'semantic-ui-react'
 export const Cart = () => {
 
     const { getProductByID } = useProduct()
+    const [reloadCart, setReloadCart] = useState(false)
     const [ products, setProducts ] = useState(null)
     const { tableNumber } = useParams();
 
@@ -26,9 +27,11 @@ export const Cart = () => {
 
     }
 
+    const onReloadCart = () => setReloadCart((prev) => !prev)
+
     useEffect(() => {
         getListProducts()
-    }, [])
+    }, [ reloadCart ])
     
     return (
         <div>
@@ -44,7 +47,7 @@ export const Cart = () => {
                         </Link>
                     </div>
                 ): 
-                <ListProductCart products={ products }/>
+                <ListProductCart products={ products } onReloadCart={ onReloadCart }/>
             }
         </div>
     )
