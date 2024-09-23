@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useProduct } from '../../hooks' 
 import { Link, useParams } from "react-router-dom"
 import { getProductsCart } from "../../api/cart"
+import { ListProductCart } from '../../components/Client'
 import { size } from 'lodash'
 import { Button } from 'semantic-ui-react'
 
@@ -43,7 +44,7 @@ export const Cart = () => {
                         </Link>
                     </div>
                 ): 
-                <p>Lista de productos</p>
+                <ListProductCart products={ products }/>
             }
         </div>
     )

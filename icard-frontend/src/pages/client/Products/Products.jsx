@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { useProduct } from "../../../hooks"
-import { ListProducts } from '../../../components/client'
+import { ListProducts } from '../../../components/Client'
 
 export const Products = () => {
 
