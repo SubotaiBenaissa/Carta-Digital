@@ -7,6 +7,8 @@ import { useParams, useNavigate } from 'react-router-dom'
 
 export const ListProductCart = ({ products, onReloadCart }) => {
 
+    const [total, setTotal] = useState()
+
     const removeProduct = ( index ) => {
 
         removeProductCart(index)
@@ -14,6 +16,18 @@ export const ListProductCart = ({ products, onReloadCart }) => {
 
     }
 
+    const totalTemp = () => {
+        let totalTemp = 0
+        forEach(products, ( product ) => {
+            totalTemp += Number(product.price)
+        })
+        setTotal(totalTemp.toFixed(2))
+    }
+
+    useEffect(() => {
+        totalTemp()
+    }, [products])
+    
     return (
 
         <div className='list-product-cart'>
@@ -30,7 +44,7 @@ export const ListProductCart = ({ products, onReloadCart }) => {
                 ))
             }
             <Button primary fluid>
-                Realizar pedido
+                Realizar pedido (${ total })
             </Button>
         </div>
 

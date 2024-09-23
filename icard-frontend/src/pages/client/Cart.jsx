@@ -9,7 +9,7 @@ import { Button } from 'semantic-ui-react'
 export const Cart = () => {
 
     const { getProductByID } = useProduct()
-    const [reloadCart, setReloadCart] = useState(false)
+    const [ reloadCart, setReloadCart ] = useState(false)
     const [ products, setProducts ] = useState(null)
     const { tableNumber } = useParams();
 
