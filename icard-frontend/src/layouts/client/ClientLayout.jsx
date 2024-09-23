@@ -13,7 +13,7 @@ export const ClientLayout = ({ children }) => {
   const tableExists = async() => {
 
     const exist = await existingTable(tableNumber)
-    console.log(exist)
+    // console.log(exist)
     if( !exist ) closeTable()
 
   }

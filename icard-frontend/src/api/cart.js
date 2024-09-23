@@ -14,3 +14,11 @@ export function addProductCart(id) {
     localStorage.setItem(PRODUCT_CART, JSON.stringify(products))
 
 }
+
+export function removeProductCart(id) {
+
+    const idProducts = getProductsCart();
+    idProducts.splice(id, 1)
+    localStorage.setItem(PRODUCT_CART, JSON.stringify(idProducts))
+
+}
