@@ -115,6 +115,21 @@ export function useTable() {
 
     }
 
+    const getTableByNumberAPI = async( tableNumber ) => {
+
+        try {
+            
+            const response = await getTableByNumber( tableNumber )
+            return response
+
+        } catch (error) {
+            
+            setErrors(error)
+
+        }
+
+    }
+
     return {
         loading,
         errors,
@@ -125,7 +140,8 @@ export function useTable() {
         addTable,
         updateTable,
         deleteTable,
-        existingTable
+        existingTable,
+        getTableByNumberAPI
     }
 
 }

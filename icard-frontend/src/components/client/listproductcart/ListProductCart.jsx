@@ -4,10 +4,12 @@ import { forEach, map } from 'lodash'
 import { removeProductCart } from "../../../api/cart"
 import "./ListProductCart.scss"
 import { useParams, useNavigate } from 'react-router-dom'
+import { useOrder, useTable } from '../../../hooks'
 
 export const ListProductCart = ({ products, onReloadCart }) => {
 
     const [total, setTotal] = useState()
+    const { addOrderToTable } = useOrder()
 
     const removeProduct = ( index ) => {
 
@@ -22,6 +24,12 @@ export const ListProductCart = ({ products, onReloadCart }) => {
             totalTemp += Number(product.price)
         })
         setTotal(totalTemp.toFixed(2))
+    }
+
+    const createOrder = async() => {
+        for await (const product of products) {
+            await addOrderToTable()
+        }
     }
 
     useEffect(() => {
