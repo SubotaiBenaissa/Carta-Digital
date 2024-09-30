@@ -40,7 +40,7 @@ export async function getTableAPI(id) {
 
 }
 
-export async function getTableByNumber( numberTable ) {
+export async function getTableByNumberAPI( numberTable ) {
 
     try {
         

@@ -10,6 +10,9 @@ export const ListProductCart = ({ products, onReloadCart }) => {
 
     const [total, setTotal] = useState()
     const { addOrderToTable } = useOrder()
+    const { getTableByNumber } = useTable()
+    const { tableNumber } = useParams()
+    console.log(useParams())
 
     const removeProduct = ( index ) => {
 
@@ -27,6 +30,7 @@ export const ListProductCart = ({ products, onReloadCart }) => {
     }
 
     const createOrder = async() => {
+        const tableData = getTableByNumber(table)
         for await (const product of products) {
             await addOrderToTable()
         }

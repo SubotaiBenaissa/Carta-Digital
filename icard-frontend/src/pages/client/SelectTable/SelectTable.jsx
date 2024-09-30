@@ -19,6 +19,7 @@ export const SelectTable = () => {
             setError("No se ha seleccionado ninguna mesa")
         } else {
             const exist = await existingTable(tableNum)
+            console.log(tableNum)
             if(exist) navigate(`/client/${ tableNum }`)
             else setError("El número de la mesa no existe")
         }
