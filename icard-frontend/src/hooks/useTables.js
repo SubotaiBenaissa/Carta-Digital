@@ -141,7 +141,7 @@ export function useTable() {
         updateTable,
         deleteTable,
         existingTable,
-        getTableByNumberAPI
+        getTableByNumber
     }
 
 }
