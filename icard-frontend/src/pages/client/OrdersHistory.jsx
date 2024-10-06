@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom"
 import { map, size, forEach } from "lodash"
 import { useOrder, useTable } from '../../hooks'
 import { OrderHistoryItem } from '../../components/client'
+import { Button } from 'semantic-ui-react'
 
 export const OrdersHistory = () => {
 
@@ -34,6 +35,13 @@ export const OrdersHistory = () => {
                     <p>Cargando</p>
                 ) : (
                     <>
+                    {
+                        size(orders) > 0 && (
+                            <Button primary fluid>
+                                Pedir la cuenta
+                            </Button>
+                        )
+                    }
                     {
                         map( orders, ( order ) => (
                             <OrderHistoryItem key={ order.id } order={ order } />
