@@ -3,11 +3,13 @@ import { useParams } from "react-router-dom"
 import { map, size, forEach } from "lodash"
 import { useOrder, useTable } from '../../hooks'
 import { OrderHistoryItem } from '../../components/client'
+import { ModalConfirm } from "../../components/common"
 import { Button } from 'semantic-ui-react'
 
 export const OrdersHistory = () => {
 
     const { loading, orders, getOrderByTable } = useOrder()
+    const [showTypePayment, setShowTypePayment] = useState(false)
     const { getTableByNumber } = useTable()
     const { tableNumber } = useParams()
 
@@ -37,7 +39,7 @@ export const OrdersHistory = () => {
                     <>
                     {
                         size(orders) > 0 && (
-                            <Button primary fluid>
+                            <Button primary fluid onClick={ () => setShowTypePayment(true) }>
                                 Pedir la cuenta
                             </Button>
                         )
@@ -50,6 +52,15 @@ export const OrdersHistory = () => {
                     </>
                 )
             }
+
+            <ModalConfirm 
+                title="Pagar con tarjeta o efectivo"
+                show={ showTypePayment }
+                onCloseText="Efectivo"
+                onClose={ () => console.log("Pagar con efectivo") }
+                onConfirmText="Tarjeta"
+                onConfirm={ () => console.log("Pagar con tarjeta") }
+            />
 
         </div>
     )
