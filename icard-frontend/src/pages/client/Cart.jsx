@@ -2,9 +2,10 @@ import { useEffect, useState } from 'react'
 import { useProduct } from '../../hooks' 
 import { Link, useParams } from "react-router-dom"
 import { getProductsCart } from "../../api/cart"
-import { ListProductCart } from '../../components/Client'
+import { ListProductCart } from '../../components/client'
 import { size } from 'lodash'
 import { Button } from 'semantic-ui-react'
+
 
 export const Cart = () => {
 
