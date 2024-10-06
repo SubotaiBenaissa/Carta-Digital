@@ -11,7 +11,9 @@ export const OrderHistoryItem = ({ order }) => {
     const { title, image } = order.product_data;
 
     return (
-        <div className='order-history-item'>
+        <div className={ classNames('order-history-item', {
+            [order.status.toLowerCase()]: true
+        })}>
             <div className='order-history-item__time'>
                 <span>
                     Pedido { moment(order.created_at).startOf("second").fromNow() }
