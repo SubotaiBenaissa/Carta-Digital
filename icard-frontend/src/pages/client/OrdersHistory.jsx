@@ -1,23 +1,26 @@
 import { useState, useEffect } from 'react'
 import { useParams } from "react-router-dom"
 import { map, size, forEach } from "lodash"
-import { useOrder, useTable } from '../../hooks'
+import { useOrder, useTable, usePayment } from '../../hooks'
 import { OrderHistoryItem } from '../../components/client'
 import { ModalConfirm } from "../../components/common"
 import { Button } from 'semantic-ui-react'
 
 export const OrdersHistory = () => {
 
-    const { loading, orders, getOrderByTable } = useOrder()
+    const { loading, orders, getOrderByTable, addPaymentToOrder } = useOrder()
+    const [idTable, setIdTable] = useState(null)
     const [showTypePayment, setShowTypePayment] = useState(false)
     const { getTableByNumber } = useTable()
     const { tableNumber } = useParams()
+    const { createPayment } = usePayment()
 
     const getTableInfo = async() => {
 
         const table = await getTableByNumber(tableNumber)
-        const idTable = table[0].id
-        getOrderByTable(idTable, "", "ordering=-status,-created_at")
+        const idTableTemp = table[0].id
+        setIdTable(idTableTemp)
+        getOrderByTable(idTableTemp, "", "ordering=-status,-created_at")
 
     }
 
@@ -25,7 +28,30 @@ export const OrdersHistory = () => {
         getTableInfo()
     }, [])
 
-    console.log(orders)
+    const onCreatePayment = async(paymentType) => {
+
+        setShowTypePayment(false)
+        let totalPayment = 0
+
+        forEach(orders, (order) => {
+            totalPayment += Number(order.product_data.price)
+        })
+
+        const paymentData = {
+            mesa: idTable,
+            totalPago: totalPayment.toFixed(2),
+            tipoPago: paymentType,
+            estadoPago: "PENDIENTE"
+        }
+
+        const payment = await createPayment(paymentData)
+        for await (const order of orders) {
+            await addPaymentToOrder(order.id, payment.id)
+        }
+
+        // window.location.reload()
+
+    }
     
     return (
 
@@ -57,9 +83,9 @@ export const OrdersHistory = () => {
                 title="Pagar con tarjeta o efectivo"
                 show={ showTypePayment }
                 onCloseText="Efectivo"
-                onClose={ () => console.log("Pagar con efectivo") }
+                onClose={ () => onCreatePayment("EFECTIVO") }
                 onConfirmText="Tarjeta"
-                onConfirm={ () => console.log("Pagar con tarjeta") }
+                onConfirm={ () => onCreatePayment("TARJETA") }
             />
 
         </div>
