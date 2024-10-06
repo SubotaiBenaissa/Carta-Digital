@@ -47,7 +47,7 @@ export const ClientLayout = ({ children }) => {
             <Button icon onClick={ goToCart }>
               <Icon name="shop" />
             </Button>
-            <Button icon onClick={ goToCart }>
+            <Button icon onClick={ goToOrders }>
               <Icon name="list" />
             </Button>
             <Button icon onClick={ closeTable }>
