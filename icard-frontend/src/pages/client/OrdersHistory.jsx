@@ -11,9 +11,10 @@ export const OrdersHistory = () => {
     const { loading, orders, getOrderByTable, addPaymentToOrder } = useOrder()
     const [idTable, setIdTable] = useState(null)
     const [showTypePayment, setShowTypePayment] = useState(false)
+    const [isRequestAccount, setIsRequestAccount] = useState(false)
     const { getTableByNumber } = useTable()
     const { tableNumber } = useParams()
-    const { createPayment } = usePayment()
+    const { createPayment, getPaymentByTable } = usePayment()
 
     const getTableInfo = async() => {
 
@@ -24,9 +25,24 @@ export const OrdersHistory = () => {
 
     }
 
+    const getPayment = async() => {
+
+        if(idTable) {
+            const response = await getPaymentByTable(idTable)
+            setIsRequestAccount(response)
+            console.log(response)
+        }
+
+    }
+
     useEffect(() => {
         getTableInfo()
     }, [])
+
+    useEffect(() => {
+        getPayment()
+    }, [ idTable ])
+    
 
     const onCreatePayment = async(paymentType) => {
 
@@ -49,7 +65,7 @@ export const OrdersHistory = () => {
             await addPaymentToOrder(order.id, payment.id)
         }
 
-        // window.location.reload()
+        window.location.reload()
 
     }
     
@@ -65,8 +81,15 @@ export const OrdersHistory = () => {
                     <>
                     {
                         size(orders) > 0 && (
-                            <Button primary fluid onClick={ () => setShowTypePayment(true) }>
-                                Pedir la cuenta
+                            <Button 
+                                primary 
+                                fluid 
+                                onClick={ () => size(isRequestAccount) === 0 && setShowTypePayment(true) }>
+                                    { size(isRequestAccount) > 0 ? (
+                                        "Cuenta pedida"
+                                    ) : (
+                                        "Pedir cuenta"
+                                    ) }
                             </Button>
                         )
                     }
