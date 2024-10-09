@@ -832,6 +832,11 @@ property-expr@^2.0.5:
   resolved "https://registry.npmjs.org/property-expr/-/property-expr-2.0.5.tgz"
   integrity sha512-IJUkICM5dP5znhCckHSv30Q4b5/JA5enCtkRHYaOVOAocnH/1BQEYTC5NMfT3AVl/iXKdr3aqQbQn9DxyWknwA==
 
+qrcode.react@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/qrcode.react/-/qrcode.react-4.0.1.tgz#1caf1d3f45bf1b6d9cf800cb0f0d671f6a89e68f"
+  integrity sha512-Lpj0tPBn561WiQ3QQWXbkx8xTtB8BZkJeMZWLJIL8iaPBCoWzW1IpCeU3gY5MDqsb0+efCvEGkl9O0naP64crA==
+
 react-dom@^18.2.0:
   version "18.2.0"
   resolved "https://registry.npmjs.org/react-dom/-/react-dom-18.2.0.tgz"
